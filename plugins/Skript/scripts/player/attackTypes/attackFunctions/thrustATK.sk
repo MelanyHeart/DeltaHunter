@@ -1,0 +1,48 @@
+function thrustATK(attacker: entity, itemName: text):
+	
+	set {_originLocation} to location 0.35 blocks below {_attacker}'s head
+
+	loop {i::item::%{_itemName}%::Range} * 2 times:
+		set {_originLocation} to location 0.5 blocks in front of {_originLocation}
+		draw 2 of dust using dustOption(gray, 1) at {_originoriginLocation} with extra 0.02 to all players
+		loop all entities in radius 1.5 of location 1.25 block below {_originLocation}:
+			if damageCheck({_attacker}, loop-entity) is true:
+				set {_s} to true
+				set {_originLocation} to location 0.8 block in front of {_originLocation}
+				exit 3 sections
+
+	play sound "block.dispenser.launch" with volume 0.8 with pitch 0.2 at {_attacker}
+
+	if {_s} is true:
+		loop all entities in radius 1.75 of location 1.25 block below {_originLocation}:
+			if damageCheck({_attacker}, loop-entity) is true:
+				set {_comboID} to "%{_attacker}'s uuid%-%{_itemName}%"
+				damage loop-entity by getDamage({_attacker}, loop-entity, {i::item::%{_itemName}%::damage} * clamp(({e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} / 4) + 1, 1, 9999))
+				# Combo Mechanic
+				if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} is not greater than {i::item::%{_itemName}%::combo}:
+					add loop-entity's uuid to {_comboVictims::*}
+					if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} + 1 > {i::item::%{_itemName}%::combo}:
+						set {_comboAmount} to {i::item::%{_itemName}%::combo} - {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} 
+					else:
+						set {_comboAmount} to 1
+					add {_comboAmount} to {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%}
+		draw 8 of electric spark at {_originLocation} with extra 1 to all players
+	draw 1 of sweep attack at location 0.5 block behind and 0.33 block below {_originLocation} with extra 0.0 to all players
+	
+	wait 3 tick
+
+	play sound "item.trident.throw" at {_attacker}
+	
+	loop {_comboVictims::*}:
+		thrustDecay(loop-value, {_comboID}, {i::item::%{_itemName}%::range})
+
+function thrustDecay(victim: text, comboID: text, decayRate: number):
+	if {e::%{_victim}%::thrustComboDecay::%{_comboID}%} is not set:
+		set {e::%{_victim}%::thrustComboDecay::%{_comboID}%} to true
+		while {e::%{_victim}%::thrustComboDecay::%{_comboID}%} is true:
+			if {e::%{_victim}%::thrustCombo::%{_comboID}%} is not greater than 0:
+				clear {e::%{_victim}%::thrustComboDecay::%{_comboID}%}
+				clear {e::%{_victim}%::thrustCombo::%{_comboID}%}
+				stop
+			remove 0.1 * ({_decayRate}/5) from {e::%{_victim}%::thrustCombo::%{_comboID}%}
+			wait 4 ticks

@@ -1,0 +1,8 @@
+command /totalReset:
+	permission: op
+	trigger:
+		clear {p::false::*}
+		clear {p::true::*}
+		clear {p::%player%::*}
+		clear {p::loggedIn::%player%}
+		kick player due to "&nPlease rejoin."

@@ -1,0 +1,57 @@
+on left click:
+	if custom model data of player's tool > 0:
+		cancel event
+	if canPlayerWeaponAttack(player, uncolored name of player's tool, false) is true:
+		playerWeaponAttack(player, uncolored name of player's tool)
+
+on right click:
+	if custom model data of player's offhand tool > 0:
+		cancel event
+	if canPlayerWeaponAttack(player, uncolored name of player's offhand tool, true) is true:
+		playerWeaponAttack(player, uncolored name of player's offhand tool)
+
+function canPlayerWeaponAttack(p: player, itemName: string, hand: boolean) :: boolean:
+	if {i::item::%{_itemName}%::level} is set:
+		if {p::true::%{_p}%::Level} >= {i::item::%{_itemName}%::level}:
+			if {i::item::%{_itemName}%::Duel Wield} is true:
+				set {_cooldownType} to "attackCD-%{_hand}%"
+			if cooldown({_p}, "%{_cooldownType}%", {i::item::%{_itemName}%::attack speed}, true) is true:
+				return true
+		else:
+			if cooldown({_p}, "weaponLevelError", 1.1 second, false) is true:
+				send "&cYou aren't experienced enough to use this (%{i::item::%{_itemName}%::level}%)" to {_p}
+
+on player's held item change:
+	reset item cooldown of past event-slot for player
+
+function playerWeaponAttack(p: player, itemName: string):
+	# I don't know why but I need to declare the the player's attack damage as a variable first
+	if {i::item::%{_itemName}%::attack type} is "thrust":
+		thrustATK({_p}, {_itemName})
+	else if {i::item::%{_itemName}%::attack type} is "swing":
+		swingATK({_p}, {_itemName})
+	else if {i::item::%{_itemName}%::attack type} is "smash":
+		smashATK({_p}, {_itemName})
+	else if {i::item::%{_itemName}%::attack type} is "bolt":
+		boltATK({_p}, {_itemName})
+	else if {i::item::%{_itemName}%::attack type} is "missile":
+		missileATK({_p}, {_itemName})
+	else if {i::item::%{_itemName}%::attack type} is "saw":
+		sawATK({_p}, {_itemName})
+
+
+
+	# Punching
+
+on arm swing:
+	if player's gamemode is adventure:
+		if player's tool is air:
+			if distance between player and player's target entity is less than 4:
+				if cooldown(player's uuid, "punch", 1.1 second, false) is true:
+					set {_v} to player's target entity
+					if damageCheck(player, {_v}) is true:
+						damage {_v} by getDamage(player, {_v}, 1)
+
+	
+
+

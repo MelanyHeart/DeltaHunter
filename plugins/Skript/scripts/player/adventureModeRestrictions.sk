@@ -1,0 +1,4 @@
+on right click:
+	if player's gamemode is adventure:
+		if event-block is trapdoor:
+			cancel event

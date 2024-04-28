@@ -1,0 +1,25 @@
+on load:
+	# Setting generic stats to 0 instead of "<none>"
+	clear {i::genericPlayerStats::*}
+	add "Cash" to {i::genericPlayerStats::*}
+	add "level" to {i::genericPlayerStats::*}
+	add "xp" to {i::genericPlayerStats::*}
+
+	clear {i::genericPlayerMultipliers::*}
+	add "luck" to {i::genericPlayerMultipliers::*}
+	add "experience" to {i::genericPlayerMultipliers::*}
+	add "scavenger" to {i::genericPlayerMultipliers::*}
+	add "regeneration" to {i::genericPlayerMultipliers::*}
+	add "mysticism" to {i::genericPlayerMultipliers::*}
+	add "endurance" to {i::genericPlayerMultipliers::*}
+	add "strength" to {i::genericPlayerMultipliers::*}
+
+# FOR STATS
+
+function playerStatRestart(p: player):
+	loop {i::genericPlayerStats::*}:
+		set {p::true::%{_p}%::%loop-value%} to 0
+
+	# Used for armor
+	loop {i::genericPlayerMultipliers::*}:
+		set {p::false::%{_p}%::%loop-value%} to 1

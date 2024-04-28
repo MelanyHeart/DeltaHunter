@@ -1,0 +1,31 @@
+on right click on entity:
+	if name of event-entity starts with "&a":
+		if cooldown("%player%", "NpcProgression", 0.5 seconds, false) is true:
+			set {_npc} to uncolored name of event-entity
+
+			# Generic stuff
+
+			if {i::NPC::%{_npc}%::dialogue::1::1} is set:
+				set {p::false::%player%::npcCanProgress::%{_npc}%} to false
+
+				set {_block} to {p::true::%player%::npc::%{_npc}%::dialogue}
+				set {_line} to {p::false::%player%::npc::%{_npc}%::dialogue}
+				
+				if {p::false::%player%::debug} is set:
+					send "&6Specific" to player
+					send "&a%{_block}%" to player
+					send "&c%{_line}%" to player
+
+				
+				
+				# Script Specific stuff
+
+				if {_npc} is "Melany":
+					if {i::npc::%{_npc}%::dialogue::%{_block}%::%{_line}+1%} is not set:
+				
+						if {_block} = 1:
+							give player 5 bedrock
+							clear {p::false::%player%::npcCanProgress::%{_npc}%}
+						else if {_block} = 2:
+							if player's inventory does not contain bedrock:
+								clear {p::false::%player%::npcCanProgress::%{_npc}%}

@@ -1,0 +1,131 @@
+on join:
+	set join message to "&e⤿ %player's name% has joined"
+	set player's max health attribute to 40
+	set player's generic armor attribute to 0
+	set player's hunger to 10
+	set player's saturation to 2
+	set player's generic attack speed attribute to 99
+	set {p::loggedIn::%player%} to false
+
+	if {p::%player%::passkey} is not set:
+		set {_i::*} to random integer between 8 and 12 random characters from "a" to "z"
+		set {_i} to "%{_i::*}%"
+		replace all ", " and " and " with "" in {_i}
+		set {p::%player%::passkey} to {_i}
+
+	while {p::loggedIn::%player%} is false:
+		if {p::true::%player%::logoutLocation} is not set:
+			send ""
+			send "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]" to player
+			send ""
+			send "&c&lWELCOME!"
+			send "&cThis is an offline server."
+			send "&cWe use 'passkeys' to keep accounts safe."
+			send formatted "<sgt:/login %{p::%player%::passkey}%><tooltip:&7Shhhh, don't tell anyone. :3%nl%&f&n%{p::%player%::passkey}%>&c&nClick to copy your passkey<reset>&c!" to player
+			send ""
+			send "&7When you are ready to play:" to player
+			send "&7/login <text>" to player
+			send ""
+			send "&7If you wish to change your passkey:" to player
+			send "&7/register <text> <text>" to player
+			send ""
+		else:
+			send ""
+			send "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]" to player
+			send ""
+			send "&c&lWELCOME BACK!"
+			send "&cHello %player%, please login."
+			send ""
+			send "&7When you are ready to play:" to player
+			send "&7<sgt:/login >/login <text><reset>" to player
+			send ""
+			if "transmission" is loaded on discord:
+				send "&7If you forgot your passkey:" to player
+				send "&7/setpasskey <text>" to player
+				send "&8Only on Discord after /link" to player
+				send ""
+		play sound "block.amethyst_block.resonate" with volume 0.3 with pitch random number between 0.8 and 1.2 to player
+		send title "Please read chat." to player for 11 seconds with fadein 0 second and fade out 0.2 second
+		loop 100 times:
+			wait 2 ticks
+			teleport player to {i::locations::spawn}
+			if {p::loggedIn::%player%} is not false:
+				if {p::loggedIn::%player%} is not true:
+					stop
+				exit all sections
+
+	playerStatRestart(player)
+	reloadTablist(player)
+	reloadSidebar(player)
+	itemSync(player)
+
+	if {p::true::%player%::logoutLocation} is set:
+		updateDisplayname(player)
+		# Prevents player from rejoining (breaking cutscene code and stuff) into a region they shouldn't be in
+
+		set {_regions::*} to regions at {p::true::%player%::logoutLocation}
+		loop {_regions::*}:
+			set {_r::%loop-value%::*} to "%loop-value%" split at " "
+			set {_r::%loop-value%} to {_r::%loop-value%::1}
+
+		loop {_r::*}:
+			if {i::regions::%loop-value%::restricted} is set:	
+				set {p::true::%player%::logoutLocation} to {i::locations::lumen}
+				wait 3 seconds
+				play sound "block.note_block.pling" with volume 2 with pitch 0.2 at player for player
+				send "&4&l>&c Sorry about that, you are now back in spawn."
+				stop	
+		teleport player to {p::true::%player%::logoutLocation}
+	else:
+		clearChat(player)
+		reset(player)
+
+on disconnect:
+	if {p::loggedIn::%player%} is set:
+		set {p::true::%player%::logoutLocation} to player's location
+		send all items in player's inventory to console
+		send "Player has left (:" to the console
+		clear {p::loggedIn::%player%}
+	set leave message to "&e%Player's name% has left"
+	if {p::true::%player%::logoutLocation} is not set:
+		clear {p::%player%::passkey}
+		undisguise player
+
+on respawn:
+	wait 1 ticks
+	updateDisplayname(player)
+
+function updateDisplayname(p: player):
+	if {p::true::%{_p}%::heroName} is set:
+		set {_name} to {p::true::%{_p}%::heroName}
+	else:
+		set {_name} to {_p}'s name
+
+	if {_p} has permission "hs.dev":
+		set {_name} to "&9[Dev] %{_name}%"
+	else:
+		set {_name} to "&e%{_name}%"
+
+	set {_p}'s display name to {_name}
+	set {_p}'s tablist name to {_name}
+
+	if name of {_p}'s disguise is not {_name}:
+		suppress the variable save warnings
+		set {p::false::%{_p}%::disguise} to a new disguise from {_p}'s name
+		set skin of {p::false::%{_p}%::disguise} to {_p}'s name
+		disguise {_p} as {p::false::%{_p}%::disguise}
+
+
+
+command /itemSync:
+	trigger:
+		itemSync(player)
+
+function itemSync(p: player):
+	set {_n} to 0
+	loop 40 times:
+		if custom model data of slot {_n} of {_p}'s inventory is greater than 0:
+			set {_a} to item amount of slot {_n} of {_p}'s inventory
+			set slot {_n} of {_p}'s inventory to {i::item::%uncolored name of slot {_n} of {_p}'s inventory%}
+			set item amount of slot {_n} of {_p}'s inventory to {_a}
+		add 1 to {_n}

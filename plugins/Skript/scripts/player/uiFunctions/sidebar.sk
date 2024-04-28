@@ -1,0 +1,11 @@
+function reloadSidebar(p: player):
+	set title of {_p}'s scoreboard to "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]"
+	set line 8 of {_p}'s scoreboard to "&8&oThe hero..."
+	set line 7 of {_p}'s scoreboard to "&7&n%{_p}'s name%"
+	clear line 6 of {_p}'s scoreboard
+
+	set line 5 of {_p}'s scoreboard to ""
+	set line 4 of {_p}'s scoreboard to "&eCash: %{p::true::%{_p}%::Cash}%"
+	set line 3 of {_p}'s scoreboard to "&7Level: %{p::true::%{_p}%::level}% &8(%round({p::true::%{_p}%::xp} / {i::xpRequirements::%{p::true::%{_p}%::level} + 1%} * 100)%%%)"
+	set line 2 of {_p}'s scoreboard to ""
+	set line 1 of {_p}'s scoreboard to "&c&n%{i::ip}%"

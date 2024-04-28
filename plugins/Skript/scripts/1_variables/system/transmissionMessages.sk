@@ -1,0 +1,85 @@
+on load:
+	clear {i::randomMessages::*}
+	add "Is a group of sniffers is called a whiff?" to {i::randomMessages::*}
+	add "This server only uses %number of plugins% plugins!" to {i::randomMessages::*}
+	add "Drink water!" to {i::randomMessages::*}
+	add "Don't forget to take a break!" to {i::randomMessages::*}
+	add "Don't forget to OwO?" to {i::randomMessages::*}
+	add "This server is free and (mostly) open source! Check out the <link:https://github.com/MelanyHeart/DeltaHunter>Github page<reset>." to {i::randomMessages::*}
+	add "Also try Terraria!" to {i::randomMessages::*}
+	add "Also try Omori!" to {i::randomMessages::*}
+	add "Also try ULTRAKILL!" to {i::randomMessages::*}
+	add "Also try Megido:Abyss!" to {i::randomMessages::*}
+	add "Also try Monumenta!" to {i::randomMessages::*}
+	add "Also try OpenTTD!" to {i::randomMessages::*}
+	add "Joe Biden. Joe Biden." to {i::randomMessages::*}
+	add "I forgor what I was supposed to say." to {i::randomMessages::*}
+	add "I forgor what I was supposed to say." to {i::randomMessages::*}
+	add "ooOOoo, you like kissing bricks don't you? You're a br- &7&o*a brick flies into the server and a distant voice yells ""Shut up and eat this brick!""*" to {i::randomMessages::*}
+	add "Here be dragons..." to {i::randomMessages::*}
+	add "Rest In Peace Technoblade." to {i::randomMessages::*}
+	add "Rest In Peace Ginge." to {i::randomMessages::*}
+	add "Would you press the button?" to {i::randomMessages::*}
+	add "Lumen's river has space bending properties. There may be more like it." to {i::randomMessages::*}
+	add "Just because you're in the storm doesn't mean the game is over." to {i::randomMessages::*}
+	add "There may be a squad leader but everyone works together to win!" to {i::randomMessages::*}
+	add "Even when you're knocked down, doesn't mean you'll always be down." to {i::randomMessages::*}
+	add "When you hit bedrock, the only way to go is up." to {i::randomMessages::*}
+	add "Anything that is destroyed can be rebuilt!" to {i::randomMessages::*}
+	add "Covid has taken this year, justse outbreak. Is taken more than 100 year. Look, Here's s, alive, s. It's just, isthje. When you think about it." to {i::randomMessages::*}
+	add """Minecraft taught me a man's heart is like bedrock. It can only be broken by cheating. &7&o*Collapses onto the floor*&r"" - Sun Tzu" to {i::randomMessages::*}
+	add "Nothing is impossible, the word itself says ‘I’m possible." to {i::randomMessages::*}
+	add "Just say yes and you’ll figure it out afterwards." to {i::randomMessages::*}
+	add "To keep your balance, you must keep moving." to {i::randomMessages::*}
+	add "Some people look for a beautiful place. Others make a place beautiful." to {i::randomMessages::*}
+	add "Imperfection is beauty and madness is genius." to {i::randomMessages::*}
+	add "True love stories never have endings." to {i::randomMessages::*}
+	add "Messages for cave life part 1. Get Sufficient Sleep." to {i::randomMessages::*}
+	add "Messages for cave life part 2. Exercise Regularly." to {i::randomMessages::*}
+	add "Messages for cave life part 3. Practice Relaxation Techniques." to {i::randomMessages::*}
+	add "Messages for cave life part 4. Learn Your Stressors." to {i::randomMessages::*}
+	add "Messages for cave life part 5. Find a Hobby That Makes You Happy." to {i::randomMessages::*}
+	add "Messages for cave life part 6. Nurture Healthy Relationships.." to {i::randomMessages::*}
+	add "Messages for cave life part 7. Find Sunbrxst." to {i::randomMessages::*}
+	add "I used to work in a bank. I left because I lost interest." to {i::randomMessages::*}
+	add "Orange man bad. ):" to {i::randomMessages::*}
+	add "When I count my blessings, I count you twice. ❤" to {i::randomMessages::*}
+	add "You have to be odd to be number one. Your welcome. (:" to {i::randomMessages::*}
+	add "Short people are more down to earth. You know?" to {i::randomMessages::*}
+	add "I want my last words to be ""I left a million dollars under the...""." to {i::randomMessages::*}
+	add "Last words are for fools who haven't said enoguh. :P" to {i::randomMessages::*}
+	add "Don't forget to take me home." to {i::randomMessages::*}
+	add "I had a fish who could breakdance for 20 seconds. ^_^" to {i::randomMessages::*}
+	add "Reality is an illusion caused by a lack of cookies." to {i::randomMessages::*}
+	add "Dark humor is like food... &oIf you know, you know." to {i::randomMessages::*}
+	add "If you can't respect art, you can't have my heart. ):" to {i::randomMessages::*}
+	add "Whem I mroew, heuman says ""I know"". But somtines I think she realwy doesn't kmow." to {i::randomMessages::*}
+	add "When you wake up, what is the first thing you usually say?" to {i::randomMessages::*}
+	add "Count the number of strokes when brushing your teeth." to {i::randomMessages::*}
+	add "Basic rapid arithmetic can be good for the brain!" to {i::randomMessages::*}
+	add "The conquest of bread. Chapter Two I." to {i::randomMessages::*}
+	add "expression bait tablet prosecution go overview cruel lie throat wedding" to {i::randomMessages::*}
+	add "Can you haer me? Srory the saignl is a llitte fyuzz." to {i::randomMessages::*}
+	add "If you shout ""I have a bomb"" in public, a strange creature called ""police"" will kill you. O: %nl%(Uhhh for legal reasons we gotta say, DO NOT DO THIS!)" to {i::randomMessages::*}
+	add "Who let bro/sis cook? No really, who let bro/sis cook?" to {i::randomMessages::*}
+	add "What did bro/sis cook!? No seriously, I'm no longer asking, what did they cook???" to {i::randomMessages::*}
+	add "I wish I didn't know about the secret sauce. ):" to {i::randomMessages::*}
+	add "Mastodon >> Twitter. On god." to {i::randomMessages::*}
+	add "Apple is overpriced. Transmission approves this message. :thumbsup:" to {i::randomMessages::*}
+	add "Microsoft is insipid. Transmission approves this message. :thumbsup:" to {i::randomMessages::*}
+	add "Google is invasive. Transmission approves this message. :thumbsup:" to {i::randomMessages::*}
+	add "Facebook is nefarious. Transmission approves this message. :thumbsup:" to {i::randomMessages::*}
+	add "Put a little boogie in what?" to {i::randomMessages::*}
+	add "<tooltip:Haha got you (:>What's that behind you?" to {i::randomMessages::*}
+	add "Teach me how to be bored! I always have people around when I'm awake! I'm never bored around people. ((:" to {i::randomMessages::*}
+	add "I'm powered on blood. :3" to {i::randomMessages::*}
+	add "Whose blood? Don't worry! =^_^=" to {i::randomMessages::*}
+	add "Drown in revere for me! For me for me for me!" to {i::randomMessages::*}
+	add "We must outvie our enemies..." to {i::randomMessages::*}
+	add "Accrue Cash and XP! Become &othe&f hero!" to {i::randomMessages::*}
+	add "Freedom is merely privilege unless enjoyed by one and all." to {i::randomMessages::*}
+	add "Human rights for all!" to {i::randomMessages::*}
+
+
+	# Idk about this one
+	# add "Dashing through the halls! The endless writhing walls! So much fun it is to hear them scream! Oh jingle bells, jungle bells." to {i::randomMessages::*}

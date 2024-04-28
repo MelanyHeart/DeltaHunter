@@ -1,0 +1,34 @@
+on region enter:
+	set {_r::*} to "%event-region%" split at " "
+	set {_r} to {_r::1}
+	
+	#FIRST ENTER
+	if {i::regions::%{_r}%::discoverMessage} is set:
+		if {p::%player%::regions::%{_r}%::firstEnter} is not set:
+			set {p::%player%::regions::%{_r}%::firstEnter} to true
+			send "%nl%&7[====---- %{i::regions::%{_r}%::name}%&7 ----====]%nl%%nl%&r%{i::regions::%{_r}%::discoverMessage}%%nl%" to player
+			wait 1 tick
+			play sound "%{i::regions::%{_r}%::discoverSound}%" at player for player
+	
+	#CONTINIOUS
+
+	
+	#Teleport and sound
+	if {i::regions::%{_r}%::tp} is set:
+		teleport player to {i::regions::%{_r}%::tp}
+		if {i::regions::%{_r}%::enterSound} is set:
+			play sound "%{i::regions::%{_r}%::enterSound}%" at {i::regions::%{_r}%::tp} for player
+	
+	else if {i::regions::%{_r}%::enterSound} is set:
+		play sound "%{i::regions::%{_r}%::enterSound}%" at player for player
+		
+	#DEBUG
+	if {p::false::%player%::debug} is true:
+		send "%nl%&7Region name '%{_r}%'%nl%"
+	
+	#SPECIAL CASES:
+	if {_r} is "ha_exit":
+		teleport player to location 38 blocks above player
+	else if {_r} is "ha_enterance":
+		teleport player to location 29 blocks below player		
+

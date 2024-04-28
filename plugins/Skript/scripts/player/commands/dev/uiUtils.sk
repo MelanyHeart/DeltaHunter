@@ -1,0 +1,9 @@
+command /reloadSidebar:
+	permission: op
+	trigger:
+		reloadSidebar(player)
+
+command /reloadTablist:
+	permission: op
+	trigger:
+		reloadTablist(player)

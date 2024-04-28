@@ -1,0 +1,57 @@
+#                             #
+#  Skript By Melancho(l/ph)y  #
+#                             #
+
+#
+# Modify to your hearts content!
+#
+
+    # System which logs the location of placed/broken torch flowers
+    # Additionally, instantly updates the block above
+
+on place of torchflower:
+    add location of event-block to {s::torchflowers::*}
+    set block data of block at location 1 block above event-block to light[level=10]
+
+on break of torchflower:
+    remove location of event-block from {s::torchflowers::*}
+    if block above event-block is light:
+        set block above event-block to air
+
+
+
+
+    # System which ticks active torch flowers
+    # Makes torch flowers glow
+    # Checks if there is actually a torch flower at the logged flower location
+
+every second:
+    loop {s::torchflowers::*}:
+        if block at loop-value is not torchflower:
+            remove loop-value from {s::torchflowers::*}
+            if block above loop-value is light:
+                set block above loop-value to air
+        else:
+            make 1 of flame at loop-value with offset vector(0.2, 0.3, 0.2) with extra 0.01
+            if block above loop-value is air or light:
+                if {s::torchflowersOtherTick} > 5:
+                    set {_block} to "light[level=%ceil(random number between 10 and 13)%]"
+                    set block data of block at location 1 block above loop-value to {_block} parsed as block data
+                    clear {s::torchflowersOtherTick}
+                else:
+                    add 1 to {s::torchflowersOtherTick}
+
+
+    # Down below, we check for all torch flowers inside the newly loaded/unloaded and make it start/stop ticking
+    # Intended to improve performance on large scales
+
+on player chunk load:
+    loop {s::torchflowersinactive::*} where [input's chunk is event-chunk]:
+        add loop-value to {s::torchflowers::*}
+        remove loop-value from {s::torchflowersinactive::*}
+
+
+on player chunk unload:
+    loop {s::torchflowers::*} where [input's chunk is event-chunk]:
+        add loop-value to {s::torchflowersinactive::*}
+        remove loop-value from {s::torchflowers::*}

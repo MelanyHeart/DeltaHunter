@@ -1,0 +1,37 @@
+command /home:
+    cooldown: 3 seconds
+    trigger:
+        send "&cYou have no home to return to..."
+
+command /sethome:
+    cooldown: 3 seconds
+    trigger:
+        send "&cWhy would you want to do that here..."
+
+command /grox:
+    cooldown: 10 seconds
+    trigger:
+        send "&cAight bro. What-chu want?"
+        wait 60 ticks
+        send "&cNah bro, what is bro doing?"
+        wait 40 ticks
+        send "&cAYO CHILLLLL!"
+        wait 10 ticks
+        loop 5 times:
+            play sound "entity.generic.explode" with volume 0.2 with pitch random number between 0.8 and 1.2 at player for player
+            wait 2 ticks
+        loop 3 times:
+            play sound "entity.generic.explode" with volume random number between 0.2 and 0.4 with pitch random number between 0.8 and 1.2 at player for player
+            wait 2 ticks
+        loop 6 times:
+            play sound "entity.generic.explode" with volume random number between 0.6 and 1 with pitch random number between 0.8 and 1.2 at player for player
+            wait 1 ticks
+        loop 5 times:
+            play sound "entity.generic.explode" with pitch random number between 0.8 and 1.2 at player for player
+
+        set {p::%player%::death message} to "Nah, <victim> had it coming"
+
+        damage player by 69
+        loop 2 times:
+            play sound "entity.generic.explode" with volume random number between 0.7 and 1 with pitch random number between 0.8 and 1.2 at player for player
+            wait 7 ticks

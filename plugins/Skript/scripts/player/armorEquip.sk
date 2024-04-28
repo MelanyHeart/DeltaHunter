@@ -1,0 +1,33 @@
+on armor change:
+	if {i::item::%name of event-item%::level} is greater than {p::%player%::level}:
+		send "&cYou're too low level to use this item! (%{i::item::%name of event-item%::level}%)"
+		play sound "entity.item.break" at player for player
+	else:
+		armorEquip(player, uncolored name of new armor item, 1)
+		
+	if old armor item is not air:
+		if {i::item::%name of old armor item%::level} is not greater than {p::%player%::level}:
+			armorEquip(player, uncolored name of old armor item, -1)
+
+
+function armorEquip(p: player, itemName: text, n: number):
+
+	add {i::item::%{_itemName}%::defence} * {_n} to {_p}'s generic armor attribute
+	add ({i::item::%{_itemName}%::endurance}) * {_n} to {p::false::%{_p}%::endurance}
+	
+	add ({i::item::%{_itemName}%::Max health}) * 2 * {_n} to {_p}'s generic max health attribute
+	if {_n} is less than 0:
+		if {_p}'s health is greater than {_p}'s max health:
+			set {_p}'s health to {_p}'s max health
+
+	add ({i::item::%{_itemName}%::regeneration}) * {_n} to {p::false::%{_p}%::regeneration}
+	add ({i::item::%{_itemName}%::Speed}/10)* {_n} to {_p}'s generic movement speed attribute
+
+	add ({i::item::%{_itemName}%::attack damage} * {_n}) to {_p}'s generic attack damage attribute
+	add ({i::item::%{_itemName}%::strength} * {_n}) to {p::false::%{_p}%::strength}
+	
+	add ({i::item::%{_itemName}%::mysticism} * {_n}) to {p::false::%{_p}%::mysticism}
+	add ({i::item::%{_itemName}%::experience} * {_n}) to {p::false::%{_p}%::experience}
+	add ({i::item::%{_itemName}%::scavenger} * {_n}) to {p::false::%{_p}%::scavenger}
+	add ({i::item::%{_itemName}%::luck} * {_n}) to {p::false::%{_p}%::luck}
+	

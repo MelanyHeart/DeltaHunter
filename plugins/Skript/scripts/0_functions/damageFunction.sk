@@ -1,0 +1,24 @@
+function getDamage(attacker: entity, victim: entity, baseDMG: number) :: number:
+
+	# The armor must be set as a variable beforehand otherwise {_finalDamage} will be set as <none>. (':
+	set {_armor} to {_victim}'s generic armor attribute
+	set {_attackDamage} to {_attacker}'s attack damage attribute
+
+	set {_finalDamage} to ({_baseDMG} + {_attackDamage}) * {p::false::%{_attacker}'s uuid%::strength}
+	set {_finalDamage} to {_finalDamage} - {_armor}
+
+	set {_finalDamage} to {_finalDamage} / (1+{p::false::%{_victim}'s uuid%::endurance})
+	set {_finalDamage} to {_finalDamage} / 2
+
+
+	if {_victim} is instanceof activemob:
+		if type of {_attacker} is a player:
+			if {e::%{_victim}'s uuid%::attackers::%{_attacker}'s uuid%} is not set:
+				set {e::%{_victim}'s uuid%::attackers::%{_attacker}'s uuid%} to {_attacker}
+			add {_finalDamage} to {e::%{_victim}'s uuid%::attackers::%{_attacker}'s uuid%::damage}
+	else if {_victim} is a player:
+		set {_finalDamage} to {_finalDamage} / 2
+
+	if {_finalDamage} is not greater than 0.5:
+		set {_finalDamage} to 0.5
+	return {_finalDamage}

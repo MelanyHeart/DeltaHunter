@@ -1,0 +1,4 @@
+on server list ping:
+	set {_index} to random integer between 1 and 3
+	set the motd to {i::serverPingMsg::%{_index}%}
+	set the shown icon to {i::servericons::%{_index}%}

@@ -1,0 +1,26 @@
+function missileATK(attacker: entity, itemID: text):
+	set {_location} to location 0.25 blocks below {_attacker}'s head
+	play sound "entity.iron_golem.damage" at {_attacker} for {_attacker}
+	loop {_range} times:
+		loop 2 times:
+			draw 1 of dust using dustOption(white, 1) at {_location} with extra 0 to all players
+			draw 2 of electric spark at {_location} with extra 0.3 to all players
+			loop all entities in radius 1 of location 1 block below {_location}:
+				if damageCheck({_attacker}, loop-entity) is true:
+					set {_s} to true
+					set {_location} to location 1 block in front of {_location}
+					exit 4 sections
+			set {_location} to location 0.5 block in front of {_location}
+		wait 1 ticks
+		draw 1 of dust using dustOption(black, 1.5) at {_location} with extra 0 to all players
+		play sound "block.fire.extinguish" with volume 0.2 with pitch 2 at {_location}
+	
+	if {_s} is true:
+		draw 1 of explosion at {_location} with extra 0.8 to all players
+		draw 1 of dust using dustOption(red, 5) at {_location} with extra 0 to all players
+		play sound "entity.iron_golem.repair" with pitch 1.2 at {_attacker} for {_attacker}
+		loop all entities in radius 2.5 of location 1 block below {_location}:
+			if damageCheck({_attacker}, loop-entity) is true:
+				damage loop-entity by getDamage({_attacker}, loop-entity, {_damage})
+				loop 8 times:
+					draw 1 of electric spark at loop-entity's head with extra 0.8 to all players

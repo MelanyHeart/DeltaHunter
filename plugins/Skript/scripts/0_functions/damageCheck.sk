@@ -1,0 +1,12 @@
+function damageCheck(attacker: entity, victim: entity) :: boolean:
+	if {_attacker}'s uuid is {_victim}'s uuid:
+		return false
+	else if {_victim} is instanceof activemob:
+		if {_victim}'s health is greater than 0:
+			return true
+	else if {p::false::%{_attacker}'s uuid%::pvp} is true:
+		if {p::false::%{_victim}'s uuid%::pvp} is true:
+			set {p::false::%{_victim}'s uuid%::death message} to "%{_victim}% was defeated the &o%{_attacker}%"
+			return true
+	
+	return false

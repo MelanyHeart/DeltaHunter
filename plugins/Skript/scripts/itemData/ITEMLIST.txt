@@ -1,0 +1,13 @@
+1 Grox's High Velocity "Crossbow"
+2 Grox's Rocket Propelled Grape
+3 Copper Helmet
+4 Copper Chestplate
+5 Copper Leggings
+6 Copper Boots
+7 Creator's Thrust
+8 Creator's Swing
+9 Creator's Smash
+10 Creator's Bolt
+11 Creator's Missile
+12 Creator's Saw
+13 Weaker Creator's Bash

@@ -1,0 +1,36 @@
+on load:
+
+    # 
+    # Variable Structure
+    #
+    # {s::*}
+    # Server Variables
+    # These are generic variables which are never deleted. Intended for keeping track of stats
+    # > e.g. Total player joins.
+    #
+    # {i::*}
+    # Internal Variables
+    # These are variables which the server uses for functions and systems.
+    # > e.g. An item and it's stats
+    #
+    # {p::true::%player%::*}
+    # These are never cleared on server restarts as they contain player progress 
+    # > e.g. Player levels and Cash.
+    # ( In future, there will be moderation commands to easily punish naughty cheaters. )
+    #
+    # {p::false::%player%::*}
+    # Cleared upon the player leaving the server. Contains temporary progress.
+    # > e.g. The line of dialogue the player is at with NPC
+    #
+    # {p::%player%::*}
+    # Definitive player variables
+    # Variables which ideally should not be cleared unless necessary.
+    # > e.g. The Discord account linked with the Minecraft account.
+    #
+    # {e::%entity's uuid%::*}
+    # Temporary variables for entities which are cleared on server restart.
+    #
+
+    clear {e::*}
+    clear {i::*}
+    clear {p::false::*}

@@ -1,0 +1,70 @@
+# http://www.mythicmobs.net
+
+creatorMerg:
+  HealthBar:
+    Enabled: true
+  Nameplate:
+    Enabled: true
+  Type: zombie
+  Display: '&cCreator Merg'
+  Health: 20
+  Damage: 8
+  Armor: false
+  AIGoalSelectors:
+  - clear
+  Equipment:
+  - IRON_HELMET HEAD
+  - SHIELD OFFHAND
+  LevelModifiers:
+  - health 5
+  - damage 0.5
+  Options:
+    MovementSpeed: 0.1
+  HealthBar:
+    Enabled: true
+  Nameplate:
+    Enabled: true
+
+creatorBrute:
+  Type: drowned
+  Display: '&cCreator Brute'
+  Health: 40
+  Damage: 8
+  Armor: 2
+  KnockbackResistance: 0.5
+  AIGoalSelectors:
+  - clear
+  Equipment:
+  - IRON_HELMET HEAD
+  - SHIELD OFFHAND
+  LevelModifiers:
+  - health 5
+  - damage 0.5
+  Options:
+    MovementSpeed: 0.1
+  HealthBar:
+    Enabled: true
+  Nameplate:
+    Enabled: true
+
+creatorBigBoi:
+  Type: IRON_GOLEM
+  Display: '&cCreator Big Boi'
+  Health: 120
+  Damage: 8
+  Armor: 4
+  KnockbackResistance: 0.5
+  AIGoalSelectors:
+  - clear
+  Equipment:
+  - IRON_HELMET HEAD
+  - SHIELD OFFHAND
+  LevelModifiers:
+  - health 5
+  - damage 0.5
+  Options:
+    MovementSpeed: 0.1
+  HealthBar:
+    Enabled: true
+  Nameplate:
+    Enabled: true

@@ -1,0 +1,117 @@
+
+# Friendlies are green "&a"
+# Hostiles are red "&c"
+
+on right click on entity:
+	if name of entity starts with "&a":
+		if cooldown("%player%", "NpcFunction", 0.5 seconds, false) is true:
+			set {_n} to uncolored name of event-entity
+			if {i::NPC::%{_n}%::dialogue::1} is set:
+				NPCtalkbrain(player, {_n}, false)
+			else if {i::NPC::%{_n}%::dialogue::1::1} is set:
+				NPCtalkbrain(player, {_n}, true)
+				if {p::false::%player%::conversationLeaving} is not set:
+					set {p::false::%player%::conversationLeaving} to false
+					while {p::false::%player%::conversationLeaving} is false:
+						wait 2 ticks
+						if distance between player and event-entity is greater than 4:
+							clear {p::false::%player%::npc::%{_n}%::dialogue}
+							clear {p::false::%player%::conversationLeaving}
+							send "&8&oYou quietly leave the conversation..." to player	
+			else:
+				npcTalk(player, "%nl%&a%{_n}%&f &8»&f ...%nl%", "entity.villager.trade", {_null})
+
+
+function NPCtalkbrain(p: player, npc: text, progressed: boolean):
+	
+	if {p::false::%{_p}%::conversation} is not set:
+		set {p::false::%{_p}%::conversation} to true
+
+		if {_progressed} is false:
+
+			# Index Manager 
+			set {_dialogueIndex} to random integer between 1 and number of indexes of {i::npc::%{_npc}%::dialogue::*}
+			if number of indexes of {i::npc::%{_npc}%::dialogue::*} is greater than 1:
+				while {_dialogueIndex} is {p::false::%{_p}%::%{_npc}%}:
+					set {_dialogueIndex} to random integer between 1 and number of indexes of {i::npc::%{_npc}%::dialogue::*}
+			set {p::false::%{_p}%::%{_npc}%} to {_dialogueIndex}
+
+			if {p::false::%{_p}%::debug} is set:
+				send {_dialogueIndex} to {_p}
+				send {i::npc::%{_npc}%::dialogue::%{_dialogueIndex}%} to {_p}
+
+			# Text Manager
+			set {_text} to {i::npc::%{_npc}%::dialogue::%{_dialogueIndex}%}
+			
+			# Sound Manager
+			if {p::false::%{_p}%::resourcepack} is not set:
+				set {_sound} to "%{i::npc::%{_npc}%::talksound::%{_dialogueIndex}%}%"
+				set {_prevIndex} to "%{i::npc::%{_npc}%::talksound::%{p::false::%{_p}%::%{_npc}%}%}%"
+			else:
+				if {i::npc::%{_npc}%::talksoundRP::*} is set:
+					set {_sound} to "%{i::npc::%{_npc}%::talksoundRP::%{_dialogueIndex}%}%"
+					set {_prevIndex} to "%{i::npc::%{_npc}%::talksoundRP::%{p::false::%{_p}%::%{_npc}%}%}%"
+				else:
+					set {_sound} to "%{i::npc::%{_npc}%::talksound::%{_dialogueIndex}%}%"
+					set {_prevIndex} to "%{i::npc::%{_npc}%::talksound::%{p::false::%{_p}%::%{_npc}%}%}%"
+
+		# IF OUR NPC HAS PROGRESSION... oh dear god this is a hard one...
+		else:
+			if {p::true::%{_p}%::npc::%{_npc}%::dialogue} is not set:
+				set {p::true::%{_p}%::npc::%{_npc}%::dialogue} to 1
+			if {p::false::%{_p}%::npc::%{_npc}%::dialogue} is not set:
+				set {p::false::%{_p}%::npc::%{_npc}%::dialogue} to 0
+			
+			set {_block} to {p::true::%{_p}%::npc::%{_npc}%::dialogue}
+			set {_line} to {p::false::%{_p}%::npc::%{_npc}%::dialogue}
+
+			if {i::npc::%{_npc}%::dialogue::%{_block}%::%{_line} + 1%} is not set:
+				if {p::false::%{_p}%::npcCanProgress::%{_npc}%} is not false:
+					add 1 to {p::true::%{_p}%::npc::%{_npc}%::dialogue}
+					set {p::false::%{_p}%::npc::%{_npc}%::dialogue} to 1
+				else:
+					if {i::npc::%{_npc}%::dialogue::%{_block}%::alt} is set:
+						set {_line} to "alt"
+			else:
+				add 1 to {p::false::%{_p}%::npc::%{_npc}%::dialogue}
+
+
+			if {p::false::%{_p}%::debug} is set:
+				send "&6Function" to {_p}
+				send "&a%{p::true::%{_p}%::npc::%{_npc}%::dialogue}%" to {_p}
+				send "&c%{p::false::%{_p}%::npc::%{_npc}%::dialogue}%" to {_p}
+			
+
+
+			set {_block} to {p::true::%{_p}%::npc::%{_npc}%::dialogue}
+			if {_line} is not "alt":
+				set {_line} to {p::false::%{_p}%::npc::%{_npc}%::dialogue}
+
+			set {_text} to "%{i::npc::%{_npc}%::dialogue::%{_block}%::%{_line}%}%"
+			set {_sound} to "voices:%{_npc} in lowercase%.%{_block}%-%{_line}%"
+
+
+		# Resulting text
+
+		set {_text} to "%nl%&a%{_npc}%&f &8»&f %{_text}%%nl%"
+
+		if {p::true::%{_p}%::heroName} exists:
+			replace all "<player>" with "&o%{p::true::%{_p}%::heroName}%&f" in {_text}
+		else:
+			replace all "<player>" with "&o%{_p}'s name%&f" in {_text}
+
+		npcTalk({_p}, {_text}, {_sound}, {_prevIndex})
+			
+
+		clear {p::false::%{_p}%::conversation}
+
+
+function npcTalk(p: player, t: text, sound: text, prevSound: text):
+	send "%{_t}%" to {_p}
+
+	if {_sound} is set:
+		stop sound {p::false::%{_p}%::lastNPCsound} for {_p}
+		set {p::false::%{_p}%::lastNPCsound} to {_sound}
+
+	play sound "%{_sound}%" at {_p} for {_p}
+	

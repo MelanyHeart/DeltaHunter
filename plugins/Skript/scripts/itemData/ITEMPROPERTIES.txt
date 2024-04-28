@@ -1,0 +1,38 @@
+>>> WEAPON
+
+PHYSCIAL Based Attack Types
+  [Thrust - Combo]
+
+  [Swing - Arc]
+
+  [Smash - Power]
+
+MAGICAL Based Attack Types
+  [Bolt - Shrapnel]
+
+  [Missile - Radius]
+
+  [Saw - Durability]
+
+Damage
+Attack Speed
+Range
+Duel Wield
+singleWeild
+
+>>> ARMOR and CHARMS
+defence
+endurance
+max health
+regeneration
+speed
+attack damage
+strength
+mysticism
+experience
+scavenger
+luck
+
+>>> ALL
+level
+rarity

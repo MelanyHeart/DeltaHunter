@@ -1,0 +1,3 @@
+function clearChat(p: player):
+	loop 10 times:
+		send "%nl%%nl%%nl%%nl%%nl%%nl%%nl%%nl%%nl%" to {_p}

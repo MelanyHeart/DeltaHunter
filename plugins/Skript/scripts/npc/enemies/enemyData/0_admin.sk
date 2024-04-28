@@ -1,0 +1,19 @@
+on load:
+
+	# Thanks to the Mythic Skript Addon, Skript can utilize the internal names
+	# of Mythic's Mobs. Allowing for renaming of mobs without breaking things.
+
+	set {_enemy} to "creatorMerg"
+	set {i::enemy::%{_enemy}%::xp} to 3
+	set {i::enemy::%{_enemy}%::level} to 1
+	set {i::enemy::%{_enemy}%::Cash} to 2
+
+	set {_enemy} to "creatorBrute"
+	set {i::enemy::%{_enemy}%::xp} to 35
+	set {i::enemy::%{_enemy}%::level} to 20
+	set {i::enemy::%{_enemy}%::Cash} to 25
+
+	set {_enemy} to "creatorBigBoi"
+	set {i::enemy::%{_enemy}%::xp} to 50
+	set {i::enemy::%{_enemy}%::level} to 30
+	set {i::enemy::%{_enemy}%::Cash} to 50

@@ -1,0 +1,3 @@
+function reloadTablist(p: player):
+	set tablist header of {_p} to "%nl%%{i::tablistBanner}%%nl%%nl%&c&n &4&m❤&c&n &lDeltaHunter &4&m❤&c&n %nl%"
+	set tablist footer of {_p} to "%nl%&7Tps: %2nd element of tps%%nl%&7Players %number of online players%/%max players%%nl%&7IP: &N%{i::ip}%%nl%&n&r%nl%%{i::tablistBanner}%%nl%"

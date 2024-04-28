@@ -1,0 +1,40 @@
+function smashATK(attacker: entity, itemID: text):
+	set {_location} to location 1 block below {_attacker}'s head
+	loop 24 times:
+		set {_v} to spherical vector radius 2, yaw (loop-value * 15), pitch 0
+		chance of 50%:
+			draw 1 electric spark at {_location} ~ {_v} with extra 0.0 to all players
+		else:
+			draw 1 wax off at {_location} ~ {_v} with extra 0.0 to all players
+	play sound "item.shield.block" with volume 0.8 with pitch 1.2 at {_attacker} for {_attacker}
+	
+	loop all entities in radius 2.5 of location 0.5 block below {_location}:
+		if damageCheck({_attacker}, loop-entity) is true:
+			damage loop-entity by getDamage({_attacker}, loop-entity, {_damage})
+			add loop-entity to {_tagged::*}
+			loop 10 times:
+				draw 1 of electric spark at loop-entity's head with extra 1 to all players
+	
+	wait 2 ticks
+	play sound "entity.player.attack.nodamage" at {_attacker} for {_attacker}
+	set {_location} to location 0 blocks in front of and 0.5 block below {_attacker}'s head
+	set {_py} to {_attacker}'s yaw
+	set {_pp} to {_attacker}'s pitch
+	loop {_range} times:
+		loop 20 times:
+			set {_v} to spherical vector radius 1, yaw {_py} - 90 + (loop-value-2 * 9), pitch 0
+			rotate {_v} around vector cos({_py}), 0, sin({_py}) by {_pp} + random number between -5 and 5
+			draw 1 crit at {_location} ~ {_v} with extra 0.0 to all players
+		set {_location} to location 1 blocks in front of {_location}
+		wait 1 tick
+		loop all entities in radius 1.5 of location 1 block below {_location}:
+			if damageCheck({_attacker}, loop-entity) is true:
+				if {_tagged::*} does not contain loop-entity:
+					damage loop-entity by getDamage({_attacker}, loop-entity, {_damage})
+					add loop-entity to {_tagged::*}
+					loop 6 times:
+						draw 1 of electric spark at loop-entity's head with extra 1 to all players
+	
+	
+
+

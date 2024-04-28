@@ -1,0 +1,6 @@
+PlayerMapStore:
+  mapList:
+  - name: Map
+    mapID: 0
+    id: Map
+    type: SINGLE

@@ -1,0 +1,23 @@
+on damage of entity:
+
+	# Prevents players from (vanilla style) attacking entities 
+	if attacker is player:
+		if custom model data of attacker's tool > 0:
+			if damage cause is an attack or sweep attack:
+				cancel event
+				if canPlayerWeaponAttack(attacker, uncolored name of attacker's tool, false) is true:
+					playerWeaponAttack(attacker, uncolored name of attacker's tool)
+				exit
+		else:
+			if cooldown(attacker's uuid, "melee", 1 second, false) is false:
+				set damage to getDamage(attacker, victim, 1)
+				exit
+			else:
+				cancel event
+				exit
+
+	wait 1 tick
+	set victim's invulnerability ticks to 1
+	wait 19 ticks
+	kill {_di}
+	

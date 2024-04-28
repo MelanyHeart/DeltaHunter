@@ -1,0 +1,52 @@
+function applyEffect(e: entity, t: timespan, set: boolean, eff: string) :: boolean:
+	if {_e} exists:
+		if {te::%{_e}%::effects::%{_eff}%} is not set:
+			if {_set} is true:
+				set {te::%{_e}%::effects::%{_eff}%} to {_t} after now
+			else:
+				if {te::%{_e}%::effects::%{_eff}%} is not set:
+					set {te::%{_e}%::effects::%{_eff}%} to now
+				set {te::%{_e}%::effects::%{_eff}%} to {_t} after {te::%{_e}%::effects::%{_eff}%}
+			checkSendEffects({_e}, {_eff})
+			return true
+		else:
+			if {_set} is true:
+				set {te::%{_e}%::effects::%{_eff}%} to {_t} after now
+			else:
+				set {te::%{_e}%::effects::%{_eff}%} to {_t} after {te::%{_e}%::effects::%{_eff}%}
+	return false
+
+
+
+function checkSendEffects(e: entity, eff: string):
+	if {te::%{_e}%::sendingEffs} is not set:
+		set {te::%{_e}%::sendingEffs} to true
+		while {te::%{_e}%::effects::*} is set:
+		
+			loop {te::%{_e}%::effects::*}:
+				if {te::%{_e}%::effects::%loop-index%} <= 0 seconds after now:
+					clear {te::%{_e}%::effects::%loop-index%}
+					if {te::%{_e}%::effects::*} is not set:
+						clear {te::%{_e}%::sendingEffs}
+						exit
+			
+			loop {te::%{_e}%::effects::*}:
+				set {_effectTime::%loop-index%} to "%difference between now and {te::%{_e}%::effects::%loop-index%}%"
+				
+				replace " Seconds" and " Second" with "s" in {_effectTime::%loop-index%}
+				replace " Minutes" and " Minute" with "m" in {_effectTime::%loop-index%}
+				replace " Hours" and " Hour" with "h" in {_effectTime::%loop-index%}
+				replace " Days" and " Day" with "d" in {_effectTime::%loop-index%}
+				replace " and " with " " in {_effectTime::%loop-index%}
+				set {_effect::%loop-index%} to loop-index in strict proper case
+				
+				set {_eff::%loop-index%} to "%{tr::effect::%loop-index%::color}%%{_effect::%loop-index%}% &l%{_effectTime::%loop-index%}%&r"
+				
+				
+			send action bar "&7[&e%{_eff::*}%&7]" to {_e}
+			
+			clear {_eff::*}
+			if {_e}'s health is not greater than 0:
+				clear {te::%{_e}%::effects::*}
+			wait 2 ticks
+		clear {te::%{_e}%::sendingEffs}

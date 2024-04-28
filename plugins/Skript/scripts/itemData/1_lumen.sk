@@ -1,0 +1,49 @@
+on load:
+	set {_itemName} to "Copper Helmet"
+	set {i::item::%{_itemName}%} to leather helmet named "%{_itemName}%" with custom model data 3
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+
+	set {i::item::%{_itemName}%::Defence} to 1
+
+	set {i::item::%{_itemName}%::level} to 0
+	clear {i::item::%{_itemName}%::lore::*}
+	add "A basic helmet forged" and "using low quality materials." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})
+
+
+	set {_itemName} to "Copper Chestplate"
+	set {i::item::%{_itemName}%} to leather Chestplate named "%{_itemName}%" with custom model data 4
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+
+	set {i::item::%{_itemName}%::Defence} to 1
+
+	set {i::item::%{_itemName}%::level} to 0
+	clear {i::item::%{_itemName}%::lore::*}
+	add "A basic chestplate forged" and "using low quality materials." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})
+
+
+
+	set {_itemName} to "Copper Leggings"
+	set {i::item::%{_itemName}%} to leather Leggings named "%{_itemName}%" with custom model data 5
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+
+	set {i::item::%{_itemName}%::Defence} to 1
+
+	set {i::item::%{_itemName}%::level} to 0
+	clear {i::item::%{_itemName}%::lore::*}
+	add "Some basic leggings forged" and "using low quality materials." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})
+
+
+
+	set {_itemName} to "Copper Boots"
+	set {i::item::%{_itemName}%} to leather Boots named "%{_itemName}%" with custom model data 6
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+
+	set {i::item::%{_itemName}%::Defence} to 1
+
+	set {i::item::%{_itemName}%::level} to 0
+	clear {i::item::%{_itemName}%::lore::*}
+	add "Some basic boots forged" and "using low quality materials." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})

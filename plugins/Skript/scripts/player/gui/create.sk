@@ -1,0 +1,94 @@
+	# Creation GUI functionality
+
+on inventory click:
+	
+	if name of player's current inventory contains "⳧":
+		if name of player's current inventory is "&4&l&n[⳧] Character Creation    ":
+			
+			# Gender
+			if "%click type%" contains "left mouse button":
+				set {_cycleIndex} to 1
+			else:
+				set {_cycleIndex} to (-1)
+			
+			if {p::false::%Player%::genderIndex} is not set: 
+				set {p::false::%Player%::genderIndex} to 1
+
+			add {_cycleIndex} to {p::false::%Player%::genderIndex}
+
+			if index of event-slot is 20:
+				set {_item} to {i::gui::create::%mod({p::false::%Player%::genderIndex}, 3)+1%}
+				set event-slot to {_item}
+				set {_genderText} to name of {_Item}
+				replace all "[" and "]" with "" in {_genderText}
+				set {p::false::%player%::gender} to {_genderText}
+				reloadSidebar(player)
+
+			# HARDCORE
+
+			else if index of event-slot is 21:
+				send "&7Hardcore mode is not available as of now."
+
+			# TUTORIAL
+
+			else if index of event-slot is 22:
+				send "&7The tutorial is not available as of now."
+			
+			# COMPLETION
+
+			else if index of event-slot is 24:
+				set {p::true::%player%::Gender} to {p::false::%player%::Gender}
+				teleport player to {i::locations::lumen}
+				updateDisplayname(player)
+				reloadSidebar(player)
+				reloadTablist(player)
+
+	# Creates an inventory instance of the creation GUI
+
+on inventory close:
+	set {_i} to event-inventory
+	if name of {_i} is "&4&l&n[⳧] Character Creation    ":
+		if {p::true::%player%::gender} is not set:
+			wait 1 ticks
+			open {_i} to player
+
+
+
+
+
+
+function creationGUI() :: inventory:
+	set {_i} to chest inventory named "&4&l&n[⳧] Character Creation    " with 5 rows
+
+	loop 31 times:
+		set slot loop-value+9 of {_i} to gray stained glass pane named "&f"
+
+	loop 2 times:
+		loop 9 times:
+			set slot (loop-value-2) - 1 + {_n} of {_i} to red stained glass pane named "&f"
+		add 36 to {_n}
+	set {_n} to 9
+	loop 3 times:
+		set slot {_n} of {_i} to red stained glass pane named "&f"
+		add 8 to {_n}
+
+		set slot {_n} of {_i} to red stained glass pane named "&f"
+		add 1 to {_n}
+	set slot 20 of {_i} to {i::gui::create::1}
+	set slot 21 of {_i} to lime concrete named "&cHardcore Disabled" with lore "&7This mode is not available yet."
+	set slot 22 of {_i} to black wool named "&cTutorial Disabled" with lore "&7The tutorial is not available yet."
+	set slot 24 of {_i} to bell named "&c[!] Start"
+	
+	set {_head} to player skull with nbt from "{SkullOwner:{Id:[I;-1267378786,1551321428,-1885045424,-179656013],Properties:{textures:[{Value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGZkNWJkZTk5NGUwYTY0N2FmMTgyMzY4MWE2MTNjMmJmYzNkOTczNmY4ODlkYmY4YzNiYmJhNWExM2Y4ZWQifX19""}]}}}"
+
+	set slot 12 of {_i} to {_head} named "&c&l⚙ &7&nSettings&c &l⚙"
+
+	return {_i}
+
+on load:
+	clear {i::gui::create::*}
+	add light blue concrete powder named "&b[Male]" with lore "&7&o[He/Him]" to {i::gui::create::*}
+	add yellow concrete powder named "&e[Enby]" with lore "&7&o[They/Them]" to {i::gui::create::*}
+	add pink concrete powder named "&d[Female]" with lore "&7&o[She/Her]" to {i::gui::create::*}
+	loop indexes of {i::gui::create::*}:
+		add "%nl%&7Cycle between:%nl%&b&o[Male] &d&o[Female] &e&o[Enby]%nl%%NL%&8&oIs only displayed in%NL%&8&o/Stats <player>" to lore of {i::gui::create::%loop-value%}

@@ -1,0 +1,55 @@
+command /register [<text>] [<text>]:
+	trigger:
+		if {p::loggedIn::%player%} is not true:
+			send "&cYou are already logged in." 
+			stop
+		
+		if {p::true::%player%::logoutLocation} is set:
+			send "&cThis account already has a passkey." to player
+			stop
+		
+		if arg-1 or arg-2 is set:
+			if arg-1 is not arg-2:
+				send "&cPasskeys do not match"
+				stop
+			else:
+				set {p::%player%::passkey} to arg-1
+				send "&aPasskey set for this account!"
+
+		else:
+			set {_i::*} to random integer between 8 and 12 random characters from "a" to "z"
+			set {_i} to "%{_i::*}%"
+			replace all ", " and " and " with "" in {_i}
+			set {p::%player%::passkey} to {_i}
+			send formatted "&7Because you didn't enter a custom passkey, the server automatically generated one for you. &6<sgt:/login %{_i}%><tooltip:%{_i}%>Click here to copy<reset>!"
+
+		wait 40 ticks
+		
+		if "transmission" is loaded on discord:
+			send "&9Please link this account through Discord to restore your account if you forget your passkey."
+			wait 20 ticks
+
+
+
+command /login <text>:
+	trigger:
+		if {p::loggedIn::%player%} is true:
+			send "&cYou are already logged in."
+			stop
+		if arg-1 is not {p::%player%::passkey}:
+			kick player due to "&cIncorrect passkey."
+		else:
+			set {p::loggedIn::%player%} to true
+			clearChat(player)
+
+on command:
+	if player is not an operator:
+		stop
+
+	if {p::loggedIn::%player%} is not true:
+		if command is not "login" or "register" or "totalreset" or "confirmRegister":
+			cancel event
+			if {p::%player%::passkey} is set:
+				send "&cPlease /login first."
+			else:
+				send "&cPlease /register first."
