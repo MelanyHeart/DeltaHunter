@@ -1,58 +1,12 @@
 # DeltaHunter
 DeltaHunter is an RPG server which can be self-hosted or modified to your hearts content. The server is primarily programmed using a plugin called Skript which features a very easy to understand programming language, as well as a couple other plugins for ease of development. 
 
-![Image](/0_ReadMeAssets/Heart%20Strike.webp)
+Keep in mind, DeltaHunter is not in a playable state yet. When there is stable version which includes some neat foundational features, then I'll  begin publishing releases here on GitHub.
 
-## Features so far?
-Keep in mind, DeltaHunter is not in a playable state yet. When there is stable version which includes some neat foundational features, then there will be a release here on GitHub.
-
-<details>
-
-<summary>**Working Torch Flowers**</summary>
-
-![Image](/0_ReadMeAssets/TorchFlowrs.png)
-
-</details>
-
-
-<details>
-
-<summary>**A Character Creator**</summary>
-
-![Image](/0_ReadMeAssets/CharacterCreator.png)
-
-![Image](/0_ReadMeAssets/HeroChat.png)
-
-</details>
-
-
-<details>
-
-<summary>**Offline Account Support**</summary>
-
-![Image](0_ReadMeAssets/OfflineAccountSupport.png)
-
-</details>
-
-
-<details>
-
-<summary>**Gay People**</summary>
-
-![Image](0_ReadMeAssets/Gay.png)
-
-</details>
-
-
-
-
+As for now, there is a set of tools in place for easier development of items and other basic things. The server is intended to be played in offline mode so there is a login/passkey system in place to keep admin accounts secure... (At least, in future because right now the /totalreset command can be used from an operator's account without needing to be logged in.)
 
 ## Contact Me/The Community
-You can message or join me on Discord, my username is `Melanchophy` (Pronounced "Melan Coffee") or if you want to join the community, the invitation link to my Discord server is here:
-
-[__💙 Parliament of Owls 💙__](https://discord.gg/fQUzhGpf3a)
-
-[![Image](/0_ReadMeAssets/Parliment%20of%20Owls.webp)](https://discord.gg/fQUzhGpf3a)
+Feel free to join the discord server  here : [__💙 Parliament of Owls 💙__](https://discord.gg/fQUzhGpf3a) if you'd like to ask for any help outside of GitHub.
 
 # How to Play / Create Your Own Instance
 Here are the steps to create and join your own instance of DeltaHunter. Remember to keep calm during each process:
@@ -113,18 +67,3 @@ Here are the steps to create and join your own instance of DeltaHunter. Remember
     - Your file manager will ask you what you'd like to do with the files. Just click on any option which says Replace.
 
 </details>
-
-
-
-# Special Thanks To...
-Raspi_Dude, for providing a host to one of the instances (24/02/2024-Present). 
-
-![Image](/0_ReadMeAssets/Raspi%20Dude.webp)
-
-FOSS developers across the board and around the world. I'm so glad you all exist.
-
-![Image](/0_ReadMeAssets/LineageOSmyBeloved.png)
-
-Grass, I touched it one time and it was nice.
-
-![Image](/0_ReadMeAssets/Grass.jpeg)
