@@ -16,7 +16,7 @@ Here are the steps to create and join your own instance of HeartStrike. Remember
 <summary>Downloading all the required files.</summary>
 
 1. A version of [PaperMC for 1.20.4](https://papermc.io/downloads/paper). Set the file name to __`Paper.jar`__!
-2. The world file can be downloaded from [Mega](__https://mega.nz/file/wjcWUBZQ#HOGV5RQ72fgFK7v4rxCvpaYn8HkmYBr1n93piov-Pco__).
+2. The world file can be downloaded from [Mega](https://mega.nz/file/0mEWUJYL#fb9UlTeit5WdeNjnDkJeIit5FM7NDqYDmV0ykI4XIws).
 3. The config and Skripts from here on GitHub by selecting `Code` then `Download ZIP`
 4. The following plugins used during development:
     - OPTIONAL - [Freedom Chat](https://modrinth.com/plugin/freedomchat) (`Version 1.5.2`)
@@ -60,7 +60,7 @@ Here are the steps to create and join your own instance of HeartStrike. Remember
 <summary>How to update.</summary>
 
 - The world:
-    - Download the latest world file.
+    - Download the latest world file from [Mega](https://mega.nz/file/0mEWUJYL#fb9UlTeit5WdeNjnDkJeIit5FM7NDqYDmV0ykI4XIws).
     - Unzip the world file and replace the old world folder with the new world folder.
 
 - The scripts and config

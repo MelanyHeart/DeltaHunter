@@ -43,7 +43,7 @@ npc:
         updateSkins: false
         skinName: bb31591b-cdc7-49fe-a8be-7b24752da0c0
       spawned: true
-    traitnames: type,lookclose,scoreboardtrait,spawned,owner,rotationtrait,skintrait,inventory,mounttrait,location
+    traitnames: inventory,mounttrait,type,skintrait,spawned,rotationtrait,lookclose,scoreboardtrait,owner,location
     navigator:
       speedmodifier: '1.0'
       avoidwater: false

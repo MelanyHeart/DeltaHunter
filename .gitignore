@@ -1,9 +1,11 @@
 *.jar
 *.log
 *.log.gz
+*.zip
 *.json
 *.dat
-HeartStrike/
+HeartStrike/*
+crash-reports/*
 libraries/*
 cache/*
 
@@ -42,5 +44,4 @@ plugins/SkinsRestorer/
 plugins/update/
 plugins/ViaBackwards/
 plugins/ViaVersion/
-
 plugins/WorldGuard/cache/
