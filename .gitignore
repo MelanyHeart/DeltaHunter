@@ -3,7 +3,7 @@
 *.log.gz
 *.json
 *.dat
-deltahunter/
+HeartStrike/
 libraries/*
 cache/*
 

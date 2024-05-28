@@ -1,0 +1,332 @@
+version: 2 # DO NOT CHANGE
+holograms:
+  welcomejump:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1026.5
+      y: 55.0
+      z: -28.0
+      yaw: -90.0
+      pitch: 0.0
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 1.0
+    visibility_distance: 32
+    visible_by_default: true
+    billboard: fixed
+    text:
+    - '&9'
+    - '&9 &9 &lJump Down &9 &9'
+    - '&9 &9 to begin the tutorial &9 &9'
+    - '&f'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: -1
+    background: black
+  welcomejumpback:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1026.5
+      y: 55.0
+      z: -28.0
+      yaw: 90.0
+      pitch: 0.0
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 1.0
+    visibility_distance: 32
+    visible_by_default: true
+    billboard: fixed
+    text:
+    - '&9'
+    - '&9 &9 &lJump Down &9 &9'
+    - '&9 &9 to begin the tutorial &9 &9'
+    - '&f'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: -1
+    background: black
+  TS-4:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -997.5
+      y: 52.0
+      z: -13.5
+      yaw: 174.94481
+      pitch: 88.8208
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 4.0
+    shadow_strength: 0.5
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  TS-5:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -1005.5
+      y: 52.0
+      z: -17.5
+      yaw: 68.143265
+      pitch: 86.63086
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 4.0
+    shadow_strength: 0.5
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  TS-2:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -998.5
+      y: 51.0
+      z: 5.5
+      yaw: 9.184067
+      pitch: 84.44092
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 3.0
+    shadow_strength: 1.0
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  tutorialPotatoes:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1025.5
+      y: 31.0
+      z: -52.5
+      yaw: 30.694336
+      pitch: 69.95365
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 1.0
+    visibility_distance: -1
+    visible_by_default: true
+    text:
+    - '&a &lHarvest Potatoes &a'
+    - '&7using the'
+    - '&f&nIron Scythe'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: -1
+  TS-3:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -994.5
+      y: 51.0
+      z: -3.5
+      yaw: -176.12733
+      pitch: 89.663086
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 3.0
+    shadow_strength: 2.0
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  TS-1:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -1006.5
+      y: 51.0
+      z: 0.5
+      yaw: 104.361336
+      pitch: 86.79932
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 3.0
+    shadow_strength: 2.0
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  welcomewarningback:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1003.5
+      y: 54.0
+      z: -27.5
+      yaw: -180.0
+      pitch: 0.0
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 1.0
+    visibility_distance: 32
+    visible_by_default: true
+    billboard: fixed
+    text:
+    - '&c'
+    - '&c{ ! } CONTENT WARNING { ! }'
+    - '&7'
+    - '&f This game is not recommended to be played &f'
+    - played by those under of the age of 15.
+    - '&7More specific content warnings'
+    - will be added later in development.
+    - '&c'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: -1
+    background: black
+  TS-8:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -1029.5
+      y: 53.0
+      z: -25.5
+      yaw: 31.756702
+      pitch: 88.65234
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 4.0
+    shadow_strength: 1.5
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  Welcome:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1000.5
+      y: 54.0
+      z: -7.5
+      yaw: -1.0308838
+      pitch: 15.0
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 0.0
+    visibility_distance: 32
+    visible_by_default: true
+    text:
+    - '&9&lWelcome To &c&l&nHeartStrike'
+    - '&7'
+    - '&7 A Minecraft RPG Project by... &7'
+    - '&7'
+    - Melany Heart
+    - '&8(A.K.A. Heart Strike Dev)'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: 15
+    background: black
+  welcomewarning:
+    type: TEXT
+    location:
+      world: HeartStrike
+      x: -1003.5
+      y: 54.0
+      z: -27.5
+      yaw: 0.0
+      pitch: 0.0
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 0.0
+    shadow_strength: 1.0
+    visibility_distance: 32
+    visible_by_default: true
+    billboard: fixed
+    text:
+    - '&c'
+    - '&c{ ! } CONTENT WARNING { ! }'
+    - '&7'
+    - '&f This game is not recommended to be played &f'
+    - played by those under of the age of 15.
+    - '&7More specific content warnings'
+    - will be added later in development.
+    - '&c'
+    text_shadow: false
+    text_alignment: center
+    update_text_interval: -1
+    background: black
+  TS-6:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -1022.5
+      y: 53.0
+      z: -21.5
+      yaw: 81.28261
+      pitch: 86.125496
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 2.5
+    shadow_strength: 1.0
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE
+  TS-7:
+    type: ITEM
+    location:
+      world: HeartStrike
+      x: -1021.5
+      y: 53.0
+      z: -32.5
+      yaw: 179.66077
+      pitch: 88.48389
+    scale_x: 1.0
+    scale_y: 1.0
+    scale_z: 1.0
+    shadow_radius: 2.5
+    shadow_strength: 0.5
+    visibility_distance: -1
+    visible_by_default: true
+    billboard: fixed
+    item:
+      ==: org.bukkit.inventory.ItemStack
+      v: 3700
+      type: APPLE

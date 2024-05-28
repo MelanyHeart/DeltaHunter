@@ -1,0 +1,53 @@
+# [!] WARNING [!] #
+
+# USING THIS FEATURE WILL ALLOW ANY USER TO ENTER THE SPECIFIED ACCOUNT WITHOUT THE ACCOUNT'S PASSKEY
+# ()
+
+# I only recommend using this feature if you have a community you trust 100%.
+
+on load:
+	set {i::autologinprefix} to "&c[AutoLogin] &6"
+
+command /autologin [<player>]:
+	permission: dh.autologin
+	trigger:
+		if arg-1 is not set:
+			if {p::autologin} is not set:
+				set {p::autologin} to true
+				send "%{i::autologinprefix}%has been &lenabled &6for ALL players."
+				send "%{i::autologinprefix}%It's not recommended to keep this enabled unless you're a developer and/or you trust your community."
+			else:
+				clear {p::autologin}
+				send "%{i::autologinprefix}%has been disabled for ALL players."
+		else:
+			if {p::autologin::%arg-1's name%} is not set:
+				set {p::autologin::%arg-1's name%} to true
+				send "%{i::autologinprefix}%enabled for %arg-1%"
+			else:
+				clear {p::autologin::%arg-1's name%}
+				send "%{i::autologinprefix}%disabled for %arg-1%"
+
+
+command /autologinListPlayers [<text>]:
+	permission: dh.autologin
+	trigger:
+		if size of {p::autologin::*} is greater than 30:
+			if arg-1 is not set:
+				send "##############" to console
+				send "&c[AutoLogin] %indexes of {p::autologin::*}%" to console
+				send "##############" to console
+				send "&c[AutoLogin] There are too many players on the list. The list has been automatically forwarded to the console. (Override this with '/autologinlistplayers true')"
+			else:
+				send "%{i::autologinprefix}%%indexes of {p::autologin::*}%"
+		else:
+			send "%{i::autologinprefix}%%indexes of {p::autologin::*}%"
+
+command /autologinmessage:
+	permission: dh.autologin
+	trigger:
+		if {p::autologinmessage} is not set:
+			set {p::autologinmessage} to false
+			send "%{i::autologinprefix}%Players will no longer be notified about autologin when joining."
+		else:
+			clear {p::autologinmessage}
+			send "%{i::autologinprefix}%Players will now be notified about autologin when joining."

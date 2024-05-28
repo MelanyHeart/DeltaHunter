@@ -1,8 +1,8 @@
 on load:
 	clear {i::serverPingMsg::*}
-	add "                 &c⁂ &nDeltaHunter&c ⁂%nl%        &7❤ Try out the Lumen flavour! ❤" to {i::serverPingMsg::*}
-	add "                 &c⁂ &nDeltaHunter&c ⁂%nl%          &7❤ In Alpha developement! ❤" to {i::serverPingMsg::*}
-	add "                 &c⁂ &nDeltaHunter&c ⁂%nl%              &7❤ It beats, for you! ❤" to {i::serverPingMsg::*}
+	add "                 &c⁂ &nHeartStrike&c ⁂%nl%        &7❤ Try out the Lumen flavour! ❤" to {i::serverPingMsg::*}
+	add "                 &c⁂ &nHeartStrike&c ⁂%nl%          &7❤ In Alpha developement! ❤" to {i::serverPingMsg::*}
+	add "                 &c⁂ &nHeartStrike&c ⁂%nl%              &7❤ It beats, for you! ❤" to {i::serverPingMsg::*}
 
 	# Skript throws a warning that the server icons will not be saved past server restarts.
 	# This is perfectly fine as we define the variables when this skript is loaded (or when the server restarts).

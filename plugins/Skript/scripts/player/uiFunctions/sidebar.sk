@@ -1,5 +1,5 @@
 function reloadSidebar(p: player):
-	set title of {_p}'s scoreboard to "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]"
+	set title of {_p}'s scoreboard to "&4&n[ - &m❤&4&n &lHeartStrike&4&n &m❤&4&n - ]"
 	set line 8 of {_p}'s scoreboard to "&8&oThe hero..."
 	set line 7 of {_p}'s scoreboard to "&7&n%{_p}'s name%"
 	clear line 6 of {_p}'s scoreboard

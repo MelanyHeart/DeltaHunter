@@ -8,3 +8,4 @@ on disconnect:
 		if {p::false::%player%::%loop-value%} is 1:
 			clear {p::false::%player%::%loop-value%}
 	clear {p::false::%player%::*}
+

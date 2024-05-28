@@ -1,17 +1,37 @@
 function boltATK(attacker: entity, itemID: text):
+
+	# PRE-SETTING VARIABLES
 	set {_location} to location 0.5 blocks below {_attacker}'s head
-	play sound "item.trident.riptide_1" with pitch 1.2 at {_attacker}
-	loop {_range} times:
+	add {_location} to {_lineDrawLocations::*}
+
+	# FUNCTIONAL
+
+	loop {i::item::%{_itemID}%::Range} * 2 times:
 		loop 2 times:
-			draw 1 of dust using dustOption(white, 1) at {_location} ~ {_v} with extra 0.0
-			loop all entities in radius 0.8 of location 0.5 block below {_location}:
+			loop all entities in radius 1.2 of location 0.5 block below {_location}:
 				if damageCheck({_attacker}, loop-entity) is true:
 					if {_tagged::*} does not contain loop-entity:
 						damage loop-entity by getDamage({_attacker}, loop-entity, {_damage})
 						add loop-entity to {_tagged::*}
-						loop 10 times:
-							draw 1 of electric spark at loop-entity's head with extra 1
-			set {_location} to location 0.5 block in front of {_location}
+						add location 0.5 blocks above {_location} to {_lineDrawLocations::*}
+						loop {i::item::%{_itemID}%::ricoshet} times:
+							set {_nearbyEntity} to nearest entity in radius 10 around loop-entity
+							add location 0.85 blocks below {_nearbyEntity}'s head to {_lineDrawLocations::*}
+
+			set {_location} to location 0.25 block in front of {_location}
+
+
+	if {_lineDrawLocations::2} is not set:
+		set {_lineDrawLocations::2} to {_location}
+
+	broadcast {_lineDrawLocations::*}
+	# EFFECTS
+	loop size of {_lineDrawLocations::*} times:
+		set {_line} to line from {_lineDrawLocations::%loop-value - 1%} to {_lineDrawLocations::%loop-value%}
+		set {_line}'s particle density to 6
+		set {_line}'s particle to dust particle using dustOption(white, 0.8)
+		draw animation of the shape {_line} over 3 ticks
 	
+	play sound "item.trident.riptide_1" with pitch 1.2 at {_attacker}
 	
 	

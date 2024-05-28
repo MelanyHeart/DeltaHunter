@@ -1,0 +1,25 @@
+on load:
+	set {_itemName} to "Wooden Blade"
+	set {i::item::%{_itemName}%} to Wooden Sword named "%{_itemName}%" with custom model data 7
+	set {i::item::%{_itemName}%::Attack Type} to "Thrust"
+	set {i::item::%{_itemName}%::Damage} to 2
+	set {i::item::%{_itemName}%::Attack Speed} to 1.2 seconds
+	set {i::item::%{_itemName}%::Range} to 3.5
+	set {i::item::%{_itemName}%::Combo} to 2
+	set {i::item::%{_itemName}%::level} to 0
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+	add "Obtained at the start of time.", "Other than that,,  it's" and "just a normal stick." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})
+
+	set {_itemName} to "Iron Scythe"
+	set {i::item::%{_itemName}%} to stone hoe named "%{_itemName}%" with custom model data 8
+	set {i::item::%{_itemName}%::Attack Type} to "Swing"
+	set {i::item::%{_itemName}%::Damage} to 2
+	set {i::item::%{_itemName}%::Attack Speed} to 1.4 seconds
+	set {i::item::%{_itemName}%::Range} to 2.8
+	set {i::item::%{_itemName}%::Arc} to 4
+	set {i::item::%{_itemName}%::multihit} to 2
+	set {i::item::%{_itemName}%::level} to 0
+	set {i::item::%{_itemName}%::Rarity} to "Common"
+	add "Obtained at the start of time.", "Other than that,,  it's" and "just a normal stick." to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})

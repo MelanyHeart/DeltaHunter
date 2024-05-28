@@ -6,10 +6,6 @@ command /stats [<offline player>]:
 			set {_p} to player
 		else:
 			set {_p} to arg-1
-		send "%nl%&7&o[%{_p}%'s Hero]"
-		send "&f&l%{p::true::%{_p}%::heroName}% &7(%{p::true::%{_p}%::heroGender}%&7)"
+		send "%nl%&f&n%{_p}%&7 (%{p::true::%{_p}%::Gender}%&7)%nl%"
 		send "&eCash: %{p::true::%{_p}%::Cash}%"
 		send "&7Level: %{p::true::%{_p}%::level}% &8(%round({p::true::%{_p}%::xp} / 10 * 100)%%%)%nl%"
-
-
-

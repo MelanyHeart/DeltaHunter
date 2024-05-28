@@ -7,57 +7,74 @@ on join:
 	set player's generic attack speed attribute to 99
 	set {p::loggedIn::%player%} to false
 
-	if {p::%player%::passkey} is not set:
-		set {_i::*} to random integer between 8 and 12 random characters from "a" to "z"
-		set {_i} to "%{_i::*}%"
-		replace all ", " and " and " with "" in {_i}
-		set {p::%player%::passkey} to {_i}
+	# LOGIN PHASE
 
-	while {p::loggedIn::%player%} is false:
-		if {p::true::%player%::logoutLocation} is not set:
-			send ""
-			send "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]" to player
-			send ""
-			send "&c&lWELCOME!"
-			send "&cThis is an offline server."
-			send "&cWe use 'passkeys' to keep accounts safe."
-			send formatted "<sgt:/login %{p::%player%::passkey}%><tooltip:&7Shhhh, don't tell anyone. :3%nl%&f&n%{p::%player%::passkey}%>&c&nClick to copy your passkey<reset>&c!" to player
-			send ""
-			send "&7When you are ready to play:" to player
-			send "&7/login <text>" to player
-			send ""
-			send "&7If you wish to change your passkey:" to player
-			send "&7/register <text> <text>" to player
-			send ""
-		else:
-			send ""
-			send "&4&n[ - &m❤&4&n &lDeltaHunter&4&n &m❤&4&n - ]" to player
-			send ""
-			send "&c&lWELCOME BACK!"
-			send "&cHello %player%, please login."
-			send ""
-			send "&7When you are ready to play:" to player
-			send "&7<sgt:/login >/login <text><reset>" to player
-			send ""
-			if "transmission" is loaded on discord:
-				send "&7If you forgot your passkey:" to player
-				send "&7/setpasskey <text>" to player
-				send "&8Only on Discord after /link" to player
+	# AUTOLOGIN? 
+
+	if {p::autologin} or {p::autologin::%player's name%} is true:
+		set {p::loggedIn::%player%} to true
+		if {p::autologinmessage} is not false:
+			if {p::autologin} is true:
+				send "&c[AutoLogin] &6Auto login is enabled. The login/register process has been skipped!"
+			else:
+				send "&c[AutoLogin] &6Auto login is enabled for you. The login/register process has been skipped!"
+	else:
+
+		# REGISTER OR LOGIN
+
+		if {p::%player%::passkey} is not set:
+			set {_i::*} to random integer between 8 and 12 random characters from "a" to "z"
+			set {_i} to "%{_i::*}%"
+			replace all ", " and " and " with "" in {_i}
+			set {p::%player%::passkey} to {_i}
+
+		while {p::loggedIn::%player%} is false:
+			if {p::true::%player%::logoutLocation} is not set:
 				send ""
-		play sound "block.amethyst_block.resonate" with volume 0.3 with pitch random number between 0.8 and 1.2 to player
-		send title "Please read chat." to player for 11 seconds with fadein 0 second and fade out 0.2 second
-		loop 100 times:
-			wait 2 ticks
-			teleport player to {i::locations::spawn}
-			if {p::loggedIn::%player%} is not false:
-				if {p::loggedIn::%player%} is not true:
-					stop
-				exit all sections
+				send "&4&n[ - &m❤&4&n &lHeartStrike&4&n &m❤&4&n - ]" to player
+				send ""
+				send "&c&lWELCOME!"
+				send "&cThis is an offline server."
+				send "&cWe use 'passkeys' to keep accounts safe."
+				send formatted "<sgt:/login %{p::%player%::passkey}%><tooltip:&7Shhhh, don't tell anyone. :3%nl%&f&n%{p::%player%::passkey}%>&c&nClick to copy your passkey<reset>&c!" to player
+				send ""
+				send "&7When you are ready to play:" to player
+				send "&7/login <text>" to player
+				send ""
+				send "&7If you wish to change your passkey:" to player
+				send "&7/register <text> <text>" to player
+				send ""
+			else:
+				send ""
+				send "&4&n[ - &m❤&4&n &lHeartStrike&4&n &m❤&4&n - ]" to player
+				send ""
+				send "&c&lWELCOME BACK!"
+				send "&cHello %player%, please login."
+				send ""
+				send "&7When you are ready to play:" to player
+				send "&7<sgt:/login >/login <text><reset>" to player
+				send ""
+				if "transmission" is loaded on discord:
+					send "&7If you forgot your passkey:" to player
+					send "&7/setpasskey <text>" to player
+					send "&8Only on Discord after /link" to player
+					send ""
+			play sound "block.amethyst_block.resonate" with volume 0.3 with pitch random number between 0.8 and 1.2 to player
+			send title "Please read chat." to player for 11 seconds with fadein 0 second and fade out 0.2 second
+			loop 100 times:
+				wait 2 ticks
+				teleport player to {i::locations::spawn}
+				if {p::loggedIn::%player%} is not false:
+					if {p::loggedIn::%player%} is not true:
+						stop
+					exit all sections
 
 	playerStatRestart(player)
 	reloadTablist(player)
 	reloadSidebar(player)
 	itemSync(player)
+
+	# PLAYER UPDATING and ILLEGAL AREA CHECK
 
 	if {p::true::%player%::logoutLocation} is set:
 		updateDisplayname(player)

@@ -1,2 +1,50 @@
-last-created-npc-id: 3
-npc: {}
+last-created-npc-id: 4
+npc:
+  '4':
+    metadata:
+      cached-skin-uuid: b809ed85-af5d-48b1-8e2c-5bb464e2875c
+      cached-skin-uuid-name: bb31591b-cdc7-49fe-a8be-7b24752da0c0
+    name: '&aDalas'
+    uuid: d7a6823b-6257-4825-bded-ec1d00f627e4
+    traits:
+      owner:
+        uuid: d52984a0-971b-4ec6-9e30-a0d7ae35822b
+      location:
+        bodyYaw: 155.36098
+        world: HeartStrike
+        x: '-1044.6592'
+        y: '36.0'
+        z: '-28.451'
+        yaw: '155.361'
+        pitch: '0.0'
+      lookclose:
+        range: '8.0'
+        disablewhilenavigating: true
+        enabled: true
+        enableRandomLook: true
+        headonly: false
+        linkedbody: false
+        perplayer: false
+        randomLookDelay: 100
+        randomSwitchTargets: false
+        realisticlooking: true
+        targetnpcs: false
+        randomPitchRange:
+          '0': 0.0
+          '1': 0.0
+        randomYawRange:
+          '0': 0.0
+          '1': 360.0
+      type: PLAYER
+      skintrait:
+        fetchDefaultSkin: true
+        signature: Hp3rrK26gFn/uTrB5e3gOXzRecC6foaw/t1ifLLI5zxDmCSacnIK4XvR2qCz5uxcbIPNtsrJeL6VysO1qK8eWjQ1lboNBrx2GvvGDfGZZAayDNUxJEXbVm1eASxes1pFk2DYiWV9ZRsHZEKZqwpI4GOp6kWRd9aTmVEXE4JuFwZJ0/iL2sWDo4Vh6SpE1/v+8r7XNhce/nfhpqQ2arqHtw4RDgy8Nft9fQg5eOqrsHSdqi5ODREB4Zhy+AqFKFU3SRE894iNjZjbWWTlLZlRI4TrMvNJmpIOt/i5zhn1oDgxbt5qv+q/pPSbC84WJbIW/hrFsWX/AjC6uq8qcR3DC/FKcS8tB+bPH3lM6+/xlL6fqqRgw4QImZxFajKyLnUFLTbUSUUxZuN73qD8tQASCX8Dx0z4qpmQneQlkVnezGMmK9E42Vg1FyASIu0H8zdh7r36ZNxJBjrQxbA8ngOCOeSyDIe9U+jkq0WdJ9+9azzBAEfEvUKmrdKnD9267SlGuvhUqq5j1cCHZrBmCpjeDaxiIJwtivkWQX8rzJAmYoGiIK8jMpNwQlgMVM/ItOjcZsfMCBg5IIOq8n0P9tJpXf/mySF/S3UjlQMLaMASeLPI3RqDCexJ96d6IHHZpqmI+Nm7X1n0i1MlE3bLKgPbB7gBEOvLwMzfT9rBc0zqevU=
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTcxNjA4ODM3OTMxNywKICAicHJvZmlsZUlkIiA6ICIzM2Y4ZGExMTU1MzQ0YWQ5OWQ0Y2Q2ZjNhYjFjMjNhYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJCXzFfUl9CIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2ZhZWVjNTFhYWI2MDZhZTQyNDg5YzkxYjJkYmFlMjgwNTc5MTk1MTQyY2FkMGRmZWRmYjQwZTEyYThlMDIwYjkiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+        updateSkins: false
+        skinName: bb31591b-cdc7-49fe-a8be-7b24752da0c0
+      spawned: true
+    traitnames: type,lookclose,scoreboardtrait,spawned,owner,rotationtrait,skintrait,inventory,mounttrait,location
+    navigator:
+      speedmodifier: '1.0'
+      avoidwater: false
+      usedefaultstuckaction: false

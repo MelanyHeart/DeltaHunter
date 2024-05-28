@@ -1,0 +1,34 @@
+command /HeartStrike <text>:
+	trigger:
+		if arg-1 is "version":
+			send "%nl%&c[HeartStrike] &8/// &7Version &f&n%{i::serverVersion}%&f &8///%nl%"
+		else if arg-1 is "status":
+			send "%nl%&c[HeartStrike] &7/// &f%{i::serverVersion}% &7///%nl%"
+			send "    &7TPS &8| &6%tps from last 1m% &8(&7avg: %tps from last 15m%&8)"
+			send "    &7Ping &8| &3%ping of player%"
+			send "    &7Scripts loaded &8| &e%amount of scripts%"
+			send ""
+			send "    &7Entities &8| &c%amount of entities%"
+			send "        &7Players &8| &c%amount of players%"
+			send "        &7Monsters &8| &c%amount of monsters%"
+			send "        &7Projectiles &8| &c%amount of projectiles%"
+			send "        &7Other &8| &c%amount of entities - amount of monsters - amount of projectiles-amount of players%"
+		else:
+			send "%nl%&c[HeartStrike] &fSorry, that's an unrecognized option!%nl%"
+
+
+on tab complete of "/HeartStrike":
+	set tab completions for position 1 to "version" and "status"
+
+on load:
+	
+	# If you fork this server and add your own stuff, please change the "starfruit" to something else you like. (:
+
+	# Format "%ITERATION NAME%-r%Release Version%.b%Beta Version%.a%Alpha Version%"
+
+	# Example use cases:
+	# 1.0.1 translates to, "This is the first alpha, of the first release"
+	# 1.1.0 translates to, "This is the first beta, of the first release"
+	# 2.1.14 translates to, "This is the 14th alpha, of beta 1 of the second release"
+
+	set {i::serverVersion} to "starfruit-r0.b0.a1"

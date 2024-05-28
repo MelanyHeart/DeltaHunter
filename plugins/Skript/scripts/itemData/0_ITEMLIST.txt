@@ -1,0 +1,8 @@
+1 Creator's Thrust
+2 Creator's Swing
+3 Creator's Smash
+4 Creator's Bolt
+5 Creator's Missile
+6 Creator's Saw
+7 Wooden Blade
+8 Wooden Hoe

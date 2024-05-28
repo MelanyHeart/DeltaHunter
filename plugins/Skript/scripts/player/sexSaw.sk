@@ -1,6 +1,6 @@
 on right click on stonecutter:
 	cancel event
-	if cooldown("%player%", "Sex Saw", 60 seconds, true) is true:
+	if cooldown(player's name, "Sex Saw", 60 seconds, true) is true:
 		if {p::true::%player%::Gender} is "&bMale":
 			set {p::true::%player%::Gender} to "&dFemale"
 		else if {p::true::%player%::Gender} is "&dFemale":

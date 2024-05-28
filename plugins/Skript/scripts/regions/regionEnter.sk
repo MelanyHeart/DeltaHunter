@@ -21,14 +21,31 @@ on region enter:
 	
 	else if {i::regions::%{_r}%::enterSound} is set:
 		play sound "%{i::regions::%{_r}%::enterSound}%" at player for player
-		
+	
+	if {i::regions::%{_r}%::music} is set:
+		playRegionalMusic(player, {_r})
+
 	#DEBUG
 	if {p::false::%player%::debug} is true:
 		send "%nl%&7Region name '%{_r}%'%nl%"
 	
-	#SPECIAL CASES:
-	if {_r} is "ha_exit":
-		teleport player to location 38 blocks above player
-	else if {_r} is "ha_enterance":
-		teleport player to location 29 blocks below player		
 
+function playRegionalMusic(p: player, r: text):
+
+	stop sound "%{p::te::%{_p}%::currentMusic}%" in voice category for {_p}
+
+	set {_NewMusic} to "music:%{i::regions::%{_r}%::music}%"
+	set {p::te::%{_p}%::MusicCode} to mod({p::te::%{_p}%::MusicCode} + 1, 999999)
+	set {_NewMusicsCode} to {p::te::%{_p}%::MusicCode}
+
+	wait 1 tick
+
+	while "%regions at {_p}%" contains "%{_r}%":
+		if {p::te::%{_p}%::MusicCode} is not {_NewMusicsCode}:
+			exit all loops
+		play sound "%{_NewMusic}%" in voice category at {_p} for {_p}
+		wait {i::regions::%{_r}%::musicLength}
+
+	# For special cutscenes and what not, I plan to utilize the following code as an override.
+	#stop sound in the voice category
+	

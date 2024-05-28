@@ -51,8 +51,8 @@ on chat:
 	
 	broadcast formatted "%player's display name% &8»&r %message%"
 	
-	wait 1 tick
-	post "%uncolored player's display name% » %uncolored message%" to text channel with id "1199214941798932590"
+	#wait 1 tick
+	#post "%uncolored player's display name% » %uncolored message%" to text channel with id "1199214941798932590"
 	
 
 

@@ -1,1 +1,1 @@
-java -jar deltahunter.jar
+java -jar HeartStrike.jar

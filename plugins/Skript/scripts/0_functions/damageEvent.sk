@@ -1,6 +1,10 @@
 on damage of entity:
 
 	# Prevents players from (vanilla style) attacking entities 
+	if attacker's gamemode is creative:
+		if attacker's tool is air:
+			exit
+	
 	if attacker is player:
 		if custom model data of attacker's tool > 0:
 			if damage cause is an attack or sweep attack:

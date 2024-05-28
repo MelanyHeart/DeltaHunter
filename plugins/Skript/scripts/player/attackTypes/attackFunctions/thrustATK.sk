@@ -1,40 +1,75 @@
-function thrustATK(attacker: entity, itemName: text):
+function thrustATK(attacker: entity, itemID: text):
 	
-	set {_originLocation} to location 0.35 blocks below {_attacker}'s head
+	# PRE-SETTING VARIABLES
+	set {_location} to location 0.35 blocks below {_attacker}'s head
+	set {startingLocation} to location 0.2 blocks below {_location}
 
-	loop {i::item::%{_itemName}%::Range} * 2 times:
-		set {_originLocation} to location 0.5 blocks in front of {_originLocation}
-		draw 2 of dust using dustOption(gray, 1) at {_originoriginLocation} with extra 0.02 to all players
-		loop all entities in radius 1.5 of location 1.25 block below {_originLocation}:
+	# FUNCTIONAL
+	loop {i::item::%{_itemID}%::Range} * 2 times:
+		set {_location} to location 0.5 blocks in front of {_location}
+		loop all entities in radius 1.5 of location 1.25 block below {_location}:
 			if damageCheck({_attacker}, loop-entity) is true:
 				set {_s} to true
-				set {_originLocation} to location 0.8 block in front of {_originLocation}
+				set {_location} to location 0.8 block in front of {_location}
 				exit 3 sections
 
-	play sound "block.dispenser.launch" with volume 0.8 with pitch 0.2 at {_attacker}
-
 	if {_s} is true:
-		loop all entities in radius 1.75 of location 1.25 block below {_originLocation}:
+		loop all entities in radius 1.75 of location 1.25 block below {_location}:
 			if damageCheck({_attacker}, loop-entity) is true:
-				set {_comboID} to "%{_attacker}'s uuid%-%{_itemName}%"
-				damage loop-entity by getDamage({_attacker}, loop-entity, {i::item::%{_itemName}%::damage} * clamp(({e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} / 4) + 1, 1, 9999))
+				set {_comboID} to "%{_attacker}'s uuid%-%{_itemID}%"
+				damage loop-entity by getDamage({_attacker}, loop-entity, {i::item::%{_itemID}%::damage} * clamp(({e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} / 4) + 1, 1, 9999))
 				# Combo Mechanic
-				if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} is not greater than {i::item::%{_itemName}%::combo}:
+				if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} is not greater than {i::item::%{_itemID}%::combo}:
 					add loop-entity's uuid to {_comboVictims::*}
-					if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} + 1 > {i::item::%{_itemName}%::combo}:
-						set {_comboAmount} to {i::item::%{_itemName}%::combo} - {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} 
+					if {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} + 1 > {i::item::%{_itemID}%::combo}:
+						set {_comboAmount} to {i::item::%{_itemID}%::combo} - {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%} 
 					else:
 						set {_comboAmount} to 1
 					add {_comboAmount} to {e::%loop-entity's uuid%::thrustCombo::%{_comboID}%}
-		draw 8 of electric spark at {_originLocation} with extra 1 to all players
-	draw 1 of sweep attack at location 0.5 block behind and 0.33 block below {_originLocation} with extra 0.0 to all players
 	
-	wait 3 tick
-
+	# EFFECTS
 	play sound "item.trident.throw" at {_attacker}
-	
+
+	if {_s} is true:
+		set {_line} to line from {startingLocation} to {_location} 
+		set {_line}'s particle density to 6
+		set {_line}'s particle to dust particle using dustOption(white, 0.8)
+		draw animation of the shape {_line} over 3 ticks
+
+		set {_sphere} to sphere with radius 0.7
+		set {_sphere}'s particle density to 2.4
+		create a new custom electric spark particle with:
+			count: 3
+			velocity: outwards
+			extra: 1.7
+		set {_particle} to last created particle
+		set {_sphere}'s particle to {_particle}
+		draw the shape {_sphere} at {_location}
+		play sound "block.anvil.place" with volume 0.2 with pitch 0.5 at {_attacker}
+	else:
+		set {_line} to line from {startingLocation} to {_location} 
+		set {_line}'s particle density to 4
+		set {_line}'s particle to dust particle using dustOption(white, 0.5)
+		draw animation of the shape {_line} over 3 ticks
+
+		wait 4 ticks
+
+		set {_sphere} to sphere with radius 0.2
+		set {_sphere}'s particle density to 4
+		create a new custom electric spark particle with:
+			count: 3
+			velocity: outwards
+			extra: 0.6
+		set {_particle} to last created particle
+		set {_sphere}'s particle to {_particle}
+		draw the shape {_sphere} at {_location}
+		play sound "block.wooden_trapdoor.open" with pitch 0.7 at {_attacker}	
+
+
+	# FUNCTIONAL (COMBO MECHANIC)
+	wait 3 tick
 	loop {_comboVictims::*}:
-		thrustDecay(loop-value, {_comboID}, {i::item::%{_itemName}%::range})
+		thrustDecay(loop-value, {_comboID}, {i::item::%{_itemID}%::range})
 
 function thrustDecay(victim: text, comboID: text, decayRate: number):
 	if {e::%{_victim}%::thrustComboDecay::%{_comboID}%} is not set:

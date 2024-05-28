@@ -1,19 +1,68 @@
 function swingATK(attacker: entity, itemID: text):
-	set {_location} to location {_range} blocks in front of {_attacker}'s head
-	play sound "entity.generic.explode" with pitch 1.8 at {_attacker} for {_attacker}
-	loop 24 times:
-		set {_v} to spherical vector radius 2, yaw (loop-value * 15), pitch 0
-		chance of 50%:
-			draw 1 electric spark at {_location} ~ {_v} with extra 0.0 to all players
-		else:
-			draw 1 wax off at {_location} ~ {_v} with extra 0.0 to all players
-	draw 1 explosion at {_location} with extra 0.5 to all players
+
+	# Pre-setting some variables.
+	set {_location} to location 0.55 blocks below and 0.5 blocks in front of {_attacker}'s head
+	set {_totalArc} to ({i::item::%{_itemID}%::Arc} + 1) * 30
+
+
+	# Math-heavy related variables
+	set {_attackersPreviousVector} to {_attacker}'s vector
+	set {_attackersPreviousYaw} to {_attacker}'s yaw
+	set {_attackersPreviousPitch} to {_attacker}'s pitch
+	set {_yAxisRotation} to ({_totalArc}/2)
+	set {_randShapeXRotation} to random number between 5 and -5
+
+
+	### FUNCTIONAL
 	
-	loop all entities in radius 3 of location 1 block below {_location}:
+	loop all entities in radius {i::item::%{_itemID}%::range}+1 of location at {_attacker}:
 		if damageCheck({_attacker}, loop-entity) is true:
-			damage loop-entity by getDamage({_attacker}, loop-entity, {_damage})
-			loop 10 times:
-				draw 1 of electric spark at loop-entity's head with extra 1 to all players
+			set {_vectorBetween} to {_attackersPreviousVector} - loop-entity's vector
+			set {_yawDiff} to abs(abs(abs({_attackersPreviousYaw}) - {_vectorBetween}'s yaw) - 180)
+			set {_pitchDiff} to abs(({_attacker}'s pitch*-1) - {_vectorBetween}'s pitch)
+
+			if {_yawDiff} < {_totalArc}/2:
+				if abs({_pitchDiff}*(({_yawDiff}/-90)+1)) is less than or equal to 15:
+					damage loop-entity by getDamage({_attacker}, loop-entity, {i::item::%{_itemID}%::damage})
+					if {_hit} is not set:
+						set {_hit} to true
+
+		### EFFECTS
+
+		# INCREASE RAND X ROTATION AFTER FIRST LOOP
 		
+		# LEFT/RIGHT SWING
+	#set {_rightRotation} to 
+
+		# SHPERE SECTOR
+
+	set {_sphereSectorShape} to an circular sector of radius {i::item::%{_itemID}%::range} and angle {_totalArc} degrees
+	rotate shape {_sphereSectorShape} around y-axis by {_yAxisRotation}
+
+	rotate shape {_sphereSectorShape} around x-axis by {_randShapeXRotation}+{_rightRotation}
+	rotate shape {_sphereSectorShape} around z-axis by {_attackersPreviousPitch} *-1
+	rotate shape {_sphereSectorShape} around y-axis by ({_attackersPreviousYaw}*-1)-90
+
+	set {_sphereSectorShape}'s particle density to 2.5
+	set {_sphereSectorShape}'s particle to dust particle using dustOption(white, 0.5)
+	draw animation of shape {_sphereSectorShape} at {_location} over 4 ticks
 
 
+		# ARC
+
+	set {_arcSectorShape} to an arc with radius {i::item::%{_itemID}%::range} and angle {_totalArc} degrees
+	rotate shape {_arcSectorShape} around y-axis by {_yAxisRotation}
+
+	rotate shape {_arcSectorShape} around x-axis by {_randShapeXRotation}+{_rightRotation}
+	rotate shape {_arcSectorShape} around z-axis by {_attackersPreviousPitch}*-1
+	rotate shape {_arcSectorShape} around y-axis by ({_attackersPreviousYaw}*-1)-90
+
+	set {_arcSectorShape}'s particle density to 4
+	set {_arcSectorShape}'s particle to electric spark
+	draw animation of shape {_arcSectorShape} at {_location} over 4 ticks
+
+	play sound "block.wooden_trapdoor.open" with pitch 0.5 at {_attacker}	
+
+	if {_hit} is set:
+		play sound "block.anvil.place" with volume 0.2 with pitch 0.5 at {_attacker}
+	play sound "item.trident.riptide_1" at {_attacker}

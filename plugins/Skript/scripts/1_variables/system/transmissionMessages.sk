@@ -5,7 +5,7 @@ on load:
 	add "Drink water!" to {i::randomMessages::*}
 	add "Don't forget to take a break!" to {i::randomMessages::*}
 	add "Don't forget to OwO?" to {i::randomMessages::*}
-	add "This server is free and (mostly) open source! Check out the <link:https://github.com/MelanyHeart/DeltaHunter>Github page<reset>." to {i::randomMessages::*}
+	add "This server is free and (mostly) open source! Check out the <link:https://github.com/MelanyHeart/HeartStrike>Github page<reset>." to {i::randomMessages::*}
 	add "Also try Terraria!" to {i::randomMessages::*}
 	add "Also try Omori!" to {i::randomMessages::*}
 	add "Also try ULTRAKILL!" to {i::randomMessages::*}

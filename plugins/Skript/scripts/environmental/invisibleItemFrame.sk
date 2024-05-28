@@ -1,0 +1,21 @@
+on right click on item frame:
+	if player has permission "op":
+		if player is sneaking:
+			cancel event
+			set {_itemFrame} to event-item frame
+			if byte tag "Invisible" of nbt of {_itemFrame} is 0:
+				set byte tag "Invisible" of nbt of {_itemFrame} to 1
+			else:
+				set byte tag "Invisible" of nbt of {_itemFrame} to 0
+			play 1 flame at {_itemFrame}
+			play 1 smoke at {_itemFrame}
+
+command /showInvisibleItemFrames:
+	permission: op
+	trigger:
+		loop all item frames in radius 32 of player:
+			if byte tag "Invisible" of nbt of loop-item frame is 1:
+				play 1 flame at loop-item frame
+				play 1 smoke at loop-item frame
+
+	

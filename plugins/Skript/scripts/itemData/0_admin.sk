@@ -193,9 +193,9 @@ on load:
 	set {i::item::%{_itemName}%} to iron shovel named "%{_itemName}%" with custom model data 8
 	set {i::item::%{_itemName}%::Attack Type} to "Swing"
 	set {i::item::%{_itemName}%::Damage} to 5
-	set {i::item::%{_itemName}%::Attack Speed} to 0.35 seconds
+	set {i::item::%{_itemName}%::Attack Speed} to 0.1 seconds
 	set {i::item::%{_itemName}%::Range} to 3
-	set {i::item::%{_itemName}%::Arc} to 1
+	set {i::item::%{_itemName}%::Arc} to 2
 	set {i::item::%{_itemName}%::level} to 0
 	set {i::item::%{_itemName}%::Rarity} to "Admin"
 	add "An administror's favourite testing tool!" to {i::item::%{_itemName}%::lore::*}
@@ -219,7 +219,7 @@ on load:
 	set {i::item::%{_itemName}%::Damage} to 5
 	set {i::item::%{_itemName}%::Attack Speed} to 0.35 seconds
 	set {i::item::%{_itemName}%::Range} to 15
-	set {i::item::%{_itemName}%::Shrapnel} to 1
+	set {i::item::%{_itemName}%::Ricoshet} to 2
 	set {i::item::%{_itemName}%::level} to 0
 	set {i::item::%{_itemName}%::Rarity} to "Admin"
 	add "An administror's favourite testing tool!" to {i::item::%{_itemName}%::lore::*}
@@ -232,6 +232,18 @@ on load:
 	set {i::item::%{_itemName}%::Attack Speed} to 0.35 seconds
 	set {i::item::%{_itemName}%::Range} to 10
 	set {i::item::%{_itemName}%::Radius} to 3
+	set {i::item::%{_itemName}%::level} to 0
+	set {i::item::%{_itemName}%::Rarity} to "Admin"
+	add "An administror's favourite testing tool!" to {i::item::%{_itemName}%::lore::*}
+	set {i::item::%{_itemName}%} to finalizeItemStats({i::item::%{_itemName}%})
+
+	set {_itemName} to "Creator's Saw"
+	set {i::item::%{_itemName}%} to bone named "%{_itemName}%" with custom model data 12
+	set {i::item::%{_itemName}%::Attack Type} to "Saw"
+	set {i::item::%{_itemName}%::Damage} to 5
+	set {i::item::%{_itemName}%::Attack Speed} to 0.35 seconds
+	set {i::item::%{_itemName}%::Range} to 10
+	set {i::item::%{_itemName}%::Durability} to 3
 	set {i::item::%{_itemName}%::level} to 0
 	set {i::item::%{_itemName}%::Rarity} to "Admin"
 	add "An administror's favourite testing tool!" to {i::item::%{_itemName}%::lore::*}
